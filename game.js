@@ -1,3 +1,15 @@
+/* // Initialisation
+function startup() {
+  let el = document.getElementById("canvas");
+  el.addEventListener("touchstart", handleStart, false);
+  el.addEventListener("touchend", handleEnd, false);
+  el.addEventListener("touchcancel", handleCancel, false);
+  el.addEventListener("touchmove", handleMove, false);
+  ...
+}
+
+document.addEventListener("DOMContentLoaded", startup); */
+
 const canvas = document.getElementById("canvas")
 const ctx = canvas.getContext("2d")
 
@@ -7,14 +19,16 @@ const chat_text = document.getElementById("chat-text")
 let line_width = 15
 let color = "#000"
 
-let prevX = null
-let prevY = null
+let prevMouse = {}
+let prevTouch = {}
 
-let draw = false
+let drawing = false
+let ongoingTouches = []
 
 let canvas_size_ratio = null
 
-// Set variables that depend on viewport size
+
+// SETTING VARIABLES DEPENDANT ON VIEWPORT SIZE
 function calculate_viewport_size_dependant_things() {
   canvas_size_ratio = canvas.scrollHeight / canvas.height
 
@@ -30,6 +44,9 @@ calculate_viewport_size_dependant_things()
 window.addEventListener("resize", () => {
   calculate_viewport_size_dependant_things()
 })
+
+
+// MAPPING BUTTONS
 
 // Buttons for changing colour
 let clrs = document.querySelectorAll(".clr")
@@ -66,66 +83,136 @@ saveBtn.addEventListener("click", () => {
   a.click()
 })
 
-// Drawing on canvas
-window.addEventListener("mousedown", (e) => {
-  if (e.buttons === 1) draw = true
-})
-window.addEventListener("mouseup", (e) => {
-  if (e.buttons === 0) draw = false
-})
 
-canvas.addEventListener("mousemove", (e) => {
-  let rect = e.target.getBoundingClientRect();
+// DRAWING ON CANVAS
 
-  let currentX = (e.clientX - rect.left) / canvas_size_ratio
-  let currentY = (e.clientY - rect.top) / canvas_size_ratio
-
-  if (prevX == null || prevY == null || !draw) {
-    prevX = currentX
-    prevY = currentY
-    return
-  }
-
-  ctx.lineWidth = line_width
-  ctx.strokeStyle = color
+// common functions
+function draw_circle(x, y) {
   ctx.fillStyle = color
 
   ctx.beginPath()
-  ctx.arc(currentX, currentY, line_width / 2.2, 0, Math.PI * 2)
+  ctx.arc(x, y, line_width / 2, 0, Math.PI * 2)
   ctx.fill()
+}
+
+function draw_line(a, b) {
+  ctx.lineWidth = line_width
+  ctx.strokeStyle = color
 
   ctx.beginPath()
-  ctx.moveTo(prevX, prevY)
-  ctx.lineTo(currentX, currentY)
+  ctx.moveTo(a.x, a.y)
+  ctx.lineTo(b.x, b.y)
   ctx.stroke()
+}
 
-  prevX = currentX
-  prevY = currentY
+function draw(a, b) {
+  draw_circle(b.x, b.y)
+  draw_line(a, b)
+}
+
+function calibrate_position(x, y) {
+  let out = {}
+  let rect = canvas.getBoundingClientRect();
+
+  out.x = (x - rect.left) / canvas_size_ratio
+  out.y = (y - rect.top) / canvas_size_ratio
+
+  return out
+}
+
+// mouse functions
+function getCurrentMousePos(e) {
+  let currentPos = calibrate_position(e.clientX, e.clientY);
+  return currentPos
+}
+
+function mouse_draw(e) {
+  let currentPos = getCurrentMousePos(e)
+
+  if (!(prevMouse.x == null || prevMouse.y == null || !drawing)) {
+    draw(prevMouse, currentPos)
+  }
+
+  prevMouse = currentPos
+}
+
+canvas.addEventListener("mousedown", (e) => {
+  if (e.buttons === 1) {
+    drawing = true
+    mouse_draw(e)
+  }
 })
 
-canvas.addEventListener("touchmove", (evt) => {
-  evt.preventDefault();
-  var touches = evt.changedTouches;
+window.addEventListener("mousemove", mouse_draw)
 
-  for (var i = 0; i < touches.length; i++) {
-    var idx = ongoingTouchIndexById(touches[i].identifier);
+window.addEventListener("mouseup", (e) => {
+  if (e.buttons === 0) drawing = false
+})
+
+// touch functions
+function getCurrentTouchPos(e) {
+  let currentPos = calibrate_position(e.pageX, e.pageY);
+  return currentPos
+}
+
+function touch_draw(e) {
+  let currentPos = getCurrentTouchPos(e)
+
+  draw(prevTouch, currentPos)
+
+  prevTouch = currentPos
+}
+
+function ongoingTouchIndexById(idToFind) {
+  for (let i = 0; i < ongoingTouches.length; i++) {
+    let id = ongoingTouches[i].identifier;
+
+    if (id == idToFind) {
+      return i;
+    }
+  }
+  return -1;
+}
+
+canvas.addEventListener("touchstart", (e) => {
+  let touches = e.changedTouches;
+  let currentPos = getCurrentTouchPos(e)
+
+  prevTouch = currentPos
+
+  for (let i = 0; i < touches.length; i++) {
+    ongoingTouches.push(touches[i]);
+    touch_draw(touches[i])
+  }
+})
+
+window.addEventListener("touchmove", (e) => {
+  let touches = e.changedTouches;
+
+  for (let i = 0; i < touches.length; i++) {
+    let idx = ongoingTouchIndexById(touches[i].identifier);
 
     if (idx >= 0) {
-      ctx.beginPath();
-      ctx.moveTo(ongoingTouches[idx].pageX, ongoingTouches[idx].pageY);
-      ctx.lineTo(touches[i].pageX, touches[i].pageY);
-      ctx.lineWidth = line_width;
-      ctx.strokeStyle = color;
-      ctx.stroke();
+      touch_draw(touches[i])
 
-      ongoingTouches.splice(idx, 1, copyTouch(touches[i]));  // swap in the new touch record
-    } else {
-      console.log("can't figure out which touch to continue");
+      ongoingTouches.splice(idx, 1, touches[i])
     }
   }
 })
 
-// Sending messages in chat
+window.addEventListener("touchend", (e) => {
+  let touches = e.changedTouches
+
+  for (let i = 0; i < touches.length; i++) {
+    let idx = ongoingTouchIndexById(touches[i].identifier);
+    if (idx >= 0) {
+      ongoingTouches.splice(idx, 1)
+    }
+  }
+})
+
+
+// CHAT HANDLING
 function add_text_to_chat(author, text) {
   let author_corrected = author.toLowerCase()
   author_corrected = author_corrected.charAt(0).toUpperCase() + author_corrected.slice(1)
