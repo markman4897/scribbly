@@ -26,7 +26,6 @@ body {
   transform: translate(-50%, -50%);
   height: calc(100vh - 4rem);
   width: calc(100vw - 12rem);
-  margin: auto auto;
   display: flex;
   flex-direction: column;
 }
@@ -50,13 +49,14 @@ h1, h2, h3 {
   text-shadow: 2px 2px 2px var(--accent);
 }
 
-a.button {
+.button, a.button {
+  border: 0;
   border-radius: 0.5rem;
   font-weight: bold;
   text-transform: uppercase;
 }
 
-a.button-bright {
+.button-bright, a.button-bright {
   background: var(--secondary);
   color: var(--background);
 }
@@ -93,7 +93,6 @@ header {
   text-shadow: 2px 2px 2px var(--accent);
   border-radius: 1rem 1rem 0 0;
   text-align: center;
-
 }
 
 

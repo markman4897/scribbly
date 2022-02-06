@@ -19,56 +19,62 @@
     <h1>Scribbly</h1>
   </header>
   <main>
-    <div id="controlls">
-      <div id="colors">
-        <div class="colors-row">
-          <div class="clr" data-clr="#9b9c82"></div>
-          <div class="clr" data-clr="#f7b69e"></div>
-          <div class="clr" data-clr="#f48cb6"></div>
-          <div class="clr" data-clr="#c92464"></div>
-          <div class="clr" data-clr="#6a3771"></div>
-          <div class="clr" data-clr="#cb4d68"></div>
-          <div class="clr" data-clr="#f99252"></div>
-          <div class="clr" data-clr="#f7e476"></div>
+    <div id="container">
+      <div id="controlls">
+        <div id="colors">
+          <div class="colors-row">
+            <div class="clr" data-clr="#9b9c82"></div>
+            <div class="clr" data-clr="#f7b69e"></div>
+            <div class="clr" data-clr="#f48cb6"></div>
+            <div class="clr" data-clr="#c92464"></div>
+            <div class="clr" data-clr="#6a3771"></div>
+            <div class="clr" data-clr="#cb4d68"></div>
+            <div class="clr" data-clr="#f99252"></div>
+            <div class="clr" data-clr="#f7e476"></div>
+          </div>
+          <div class="colors-row">
+            <div class="clr" data-clr="#a1e55a"></div>
+            <div class="clr" data-clr="#5bb361"></div>
+            <div class="clr" data-clr="#1e8875"></div>
+            <div class="clr" data-clr="#393457"></div>
+            <div class="clr" data-clr="#606c81"></div>
+            <div class="clr" data-clr="#11adc1"></div>
+            <div class="clr" data-clr="#6df7c1"></div>
+            <div class="clr" data-clr="#ffffff"></div>
+          </div>
         </div>
-        <div class="colors-row">
-          <div class="clr" data-clr="#a1e55a"></div>
-          <div class="clr" data-clr="#5bb361"></div>
-          <div class="clr" data-clr="#1e8875"></div>
-          <div class="clr" data-clr="#393457"></div>
-          <div class="clr" data-clr="#606c81"></div>
-          <div class="clr" data-clr="#11adc1"></div>
-          <div class="clr" data-clr="#6df7c1"></div>
-          <div class="clr" data-clr="#ffffff"></div>
+        <div id="sizes">
+          <div class="size">
+            <div class="size-ball" data-size="5"></div>
+          </div>
+          <div class="size">
+            <div class="size-ball" data-size="10"></div>
+          </div>
+          <div class="size">
+            <div class="size-ball" data-size="15"></div>
+          </div>
+          <div class="size">
+            <div class="size-ball" data-size="25"></div>
+          </div>
+        </div>
+        <div id="buttons">
+          <button id="clear">CLEAR</button>
+          <button id="save">SAVE</button>
         </div>
       </div>
-      <div id="sizes">
-        <div class="size">
-          <div class="size-ball" data-size="5"></div>
-        </div>
-        <div class="size">
-          <div class="size-ball" data-size="10"></div>
-        </div>
-        <div class="size">
-          <div class="size-ball" data-size="15"></div>
-        </div>
-        <div class="size">
-          <div class="size-ball" data-size="25"></div>
-        </div>
-      </div>
-      <div id="buttons">
-        <button id="clear">CLEAR</button>
-        <button id="save">SAVE</button>
-      </div>
+      <canvas id="canvas" width="800" height="600"></canvas>
     </div>
-    <canvas id="canvas" width="800" height="600"></canvas>
     <div id="chat">
       <h2>Chat:</h2>
       <div id="chat-text">
         <span>Clive:</span> oh snap, this is awesome!<br>
         <span>Bob:</span> just you wait till you see my next painting :)<br>
       </div>
-      <input id="chat-input" type="text">
+      <div class="chat-inputs">
+        <input id="chat-input" type="text">
+        <button type="button" class="button button-bright pure-button pure-button-primary"
+          onclick="send_input_to_chat()">SEND</button>
+      </div>
     </div>
   </main>
   <footer>

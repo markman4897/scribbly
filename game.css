@@ -1,31 +1,29 @@
 main {
-  background: transparent;
   flex: 1;
+  margin-left: auto;
+  margin-right: auto;
+  background: transparent;
   padding: 0;
-  display: grid;
-  grid-template-areas: 
-  'controlls controlls controlls controlls chat chat chat'
-  'canvas    canvas    canvas    canvas    chat chat chat'
-  'canvas    canvas    canvas    canvas    chat chat chat'
-  'canvas    canvas    canvas    canvas    chat chat chat'
-  ;
+  display: flex;
+  flex-direction: row;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
 }
 
 #canvas {
-  grid-area: canvas;
-  background-color: var(--secondary);
-  width: 100%;
+  height: calc(100% - 3rem);
   aspect-ratio: 4/3;
+  background-color: var(--secondary);
   border-radius: 0 0 0.5rem 0.5rem;
   /*image-rendering: pixelated;*/
   cursor: cell;
 }
 
 #controlls {
-  grid-area: controlls;
-  box-sizing: border-box;
   background-color: var(--accent);
-  width: 100%;
   height: 3rem;
   border-radius: 0.5rem 0.5rem 0 0;
   display: flex;
@@ -34,7 +32,9 @@ main {
 }
 
 #chat {
-  grid-area: chat;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   background-color: var(--accent);
   padding: 0.2rem;
   border: 0.2rem solid var(--secondary);
@@ -48,8 +48,8 @@ main {
 }
 
 #chat-text {
-  height: calc(100% - 4rem - 1.5em);
-  width: calc(100% - 0.3rem);
+  flex: 1;
+  border-bottom: 0.2rem dashed var(--secondary);
 }
 
 #chat-text > span {
@@ -57,17 +57,25 @@ main {
 }
 
 #chat-input {
-  height: 1.4rem;
-  width: calc(100% - 0.25rem);
+  height: 100%;
+  flex: 1;
   border: 0;
-  border-top: 0.2rem dashed var(--secondary);
-  padding-top: 0.4rem;
   background-color: transparent;
   color: var(--secondary);
 }
 
 #chat-input:focus {
   outline: 0;
+}
+
+.chat-inputs {
+  height: 1.8rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.chat-inputs > button {
+  margin: 0.2rem;
 }
 
 #colors {
@@ -90,8 +98,6 @@ main {
 #sizes {
   margin: 0.2rem 1rem;
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
 }
 
 .size {
@@ -125,4 +131,27 @@ main {
   background-color: var(--tertiary);
   color: var(--secondary);
   font-weight: bold;
+}
+
+@media screen and (max-width: 64em) {
+  body {
+    height: 100vh;
+    width: 100vw;
+  }
+
+  main, #controlls, #canvas {
+    border-radius: 0;
+  }
+
+  header, footer {
+    padding: 0.2rem;
+  }
+
+  header {
+    border-radius: 0 0 0.5rem 0.5rem;
+  }
+
+  footer {
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
 }

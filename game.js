@@ -18,6 +18,7 @@ const chat_text = document.getElementById("chat-text")
 
 let line_width = 15
 let color = "#000"
+let canvas_color = window.getComputedStyle(canvas).backgroundColor
 
 let prevMouse = {}
 let prevTouch = {}
@@ -26,6 +27,10 @@ let drawing = false
 let ongoingTouches = []
 
 let canvas_size_ratio = null
+
+// INITIALISING
+calculate_viewport_size_dependant_things()
+clear_canvas()
 
 
 // SETTING VARIABLES DEPENDANT ON VIEWPORT SIZE
@@ -38,8 +43,6 @@ function calculate_viewport_size_dependant_things() {
     ball.style.height = (ball.dataset.size * canvas_size_ratio).toString() + "px"
   })
 }
-
-calculate_viewport_size_dependant_things()
 
 window.addEventListener("resize", () => {
   calculate_viewport_size_dependant_things()
@@ -69,9 +72,12 @@ sizs.forEach(siz => {
 
 // Clearing canvas
 let clearBtn = document.getElementById("clear")
-clearBtn.addEventListener("click", () => {
-  ctx.clearRect(0, 0, canvas.width, canvas.height)
-})
+clearBtn.addEventListener("click", clear_canvas)
+
+function clear_canvas() {
+  ctx.fillStyle = canvas_color
+  ctx.fillRect(0, 0, canvas.width, canvas.height)
+}
 
 // Saving drawing as image
 let saveBtn = document.getElementById("save")
@@ -221,10 +227,16 @@ function add_text_to_chat(author, text) {
   chat_text.innerHTML += temp
 }
 
-chat_input.addEventListener("keypress", (e) => {
-  if (e.key === 'Enter') {
+function send_input_to_chat() {
+  if (chat_input.value != "") {
     add_text_to_chat("me", chat_input.value)
     chat_input.value = ""
+  }
+}
+
+chat_input.addEventListener("keypress", (e) => {
+  if (e.key === 'Enter') {
+    send_input_to_chat()
   }
 })
 
