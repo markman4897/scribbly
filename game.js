@@ -175,6 +175,7 @@ function ongoingTouchIndexById(idToFind) {
 }
 
 canvas.addEventListener("touchstart", (e) => {
+  e.preventDefault()
   let touches = e.changedTouches;
   let currentPos = getCurrentTouchPos(e)
 
