@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Oswald:wght@400;700&display=swap');
+
+/* BASE */
+
+:root{
+  --primary: #dc5cb4;
+  --secondary: #ecdcbc;
+  --tertiary: #a07fc9;
+  --accent: #744c5c;
+  --background: #3c3c4c;
+}
+
+html {
+  background: var(--background);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+body {
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  height: calc(100vh - 4rem);
+  width: calc(100vw - 12rem);
+  margin: auto auto;
+  display: flex;
+  flex-direction: column;
+}
+
+html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
+  font-family: 'Oswald', sans-serif;
+  color: var(--secondary);
+}
+
+
+/* BUILDING BLOCKS */
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: bold;
+}
+
+h1, h2, h3 {
+  font-family: 'Lobster', cursive;
+  text-transform: capitalize;
+  text-shadow: 2px 2px 2px var(--accent);
+}
+
+a.button {
+  border-radius: 0.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+a.button-bright {
+  background: var(--secondary);
+  color: var(--background);
+}
+
+.link {
+  text-decoration: dashed underline 0.2rem;
+  padding: 0.2rem;
+  transition: color 0.2s;
+}
+
+.link, .link:visited, .link:hover {
+  color: inherit;
+}
+
+
+/* HELPERS */
+
+.to-right {
+  float: right;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* HEADER AREA */
+
+header {
+  background: var(--primary);
+  padding: 0.8rem;
+  text-shadow: 2px 2px 2px var(--accent);
+  border-radius: 1rem 1rem 0 0;
+  text-align: center;
+
+}
+
+
+/* MAIN AREA */
+
+main {
+  background: var(--accent);
+  flex: 1;
+  overflow: auto;
+  margin: 1rem 2rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+
+/* FOOTER AREA */
+
+footer {
+  background: var(--primary);
+  border-radius: 0 0 1rem 1rem;
+  padding: 0.6rem;
+  text-align: center;
+  color: var(--background);
+  font-weight: bold;
+}
+
+footer > div {
+  display: inline-block;
+}
+
+footer .link {
+  color: var(--background);
+  text-decoration-color: var(--background);
+}
+
+footer .link:visited, .link:hover {
+  color: var(--secondary);
+}

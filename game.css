@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Oswald:wght@400;700&display=swap');
+
+:root{
+  --primary: #dc5cb4;
+  --secondary: #ecdcbc;
+  --tertiary: #a07fc9;
+  --accent: #744c5c;
+  --background: #3c3c4c;
+}
+
+body {
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  height: calc(100% - 4rem);
+  width: calc(100% - 12rem);
+  background-color: var(--background);
+  user-select: none;
+  font-family: 'Oswald', sans-serif;
+  color: var(--secondary);
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background-color: var(--primary);
+  text-shadow: 2px 2px 2px var(--accent);
+  border-radius: 1rem 1rem 0 0;
+  text-align: center;
+}
+
+main {
+  flex: 1;
+  margin: 1rem 2rem;
+  display: grid;
+  grid-template-areas: 
+  'controlls controlls controlls controlls chat chat chat'
+  'canvas    canvas    canvas    canvas    chat chat chat'
+  'canvas    canvas    canvas    canvas    chat chat chat'
+  'canvas    canvas    canvas    canvas    chat chat chat'
+  ;
+}
+
+footer {
+  background-color: var(--primary);
+  border-radius: 0 0 1rem 1rem;
+  padding: 1rem;
+  text-align: center;
+  color: var(--background);
+  font-weight: bold;
+}
+
+h1, h2 {
+  font-family: 'Lobster', cursive;
+  padding: 0.8rem;
+  margin: 0;
+}
+
+#canvas {
+  grid-area: canvas;
+  background-color: var(--secondary);
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: 0 0 0.5rem 0.5rem;
+  /*image-rendering: pixelated;*/
+  cursor: cell;
+}
+
+#controlls {
+  grid-area: controlls;
+  box-sizing: border-box;
+  background-color: var(--accent);
+  width: 100%;
+  height: 3rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#chat {
+  grid-area: chat;
+  background-color: var(--accent);
+  padding: 0.2rem;
+  border: 0.2rem solid var(--secondary);
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+  margin-left: 1rem;
+}
+
+#chat > h2 {
+  text-shadow: 2px 2px 2px var(--background);
+}
+
+#chat-text {
+  height: calc(100% - 4rem - 1.5em);
+  width: calc(100% - 0.3rem);
+}
+
+#chat-text > span {
+  font-weight: bold;
+}
+
+#chat-input {
+  height: 1.4rem;
+  width: calc(100% - 0.25rem);
+  border: 0;
+  border-top: 0.2rem dashed var(--secondary);
+  padding-top: 0.4rem;
+  background-color: transparent;
+  color: var(--secondary);
+}
+
+#chat-input:focus {
+  outline: 0;
+}
+
+#colors {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.colors-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.clr{
+  height: calc(3rem / 2);
+  aspect-ratio: 1;
+}
+
+#sizes {
+  margin: 0.2rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.size {
+  height: 2.5rem;
+  aspect-ratio: 1;
+  background-color: var(--tertiary);
+  border-radius: 10px;
+  margin: 0.5rem;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.size > * {
+  background-color: black;
+  border-radius: 50%;
+  aspect-ratio: 1;
+}
+
+#buttons {
+  margin: 0.2rem 0.4rem;
+}
+
+#buttons > button{
+  border: none;
+  outline: none;
+  height: 100%;
+  margin: 0 0.2rem;
+  padding: 0.5rem;
+  border-radius: 3px;
+  background-color: var(--tertiary);
+  color: var(--secondary);
+  font-weight: bold;
+}
+
+footer > div {
+  display: inline-block;
+}
+
+footer a {
+  color: var(--background);
+  text-decoration: var(--accent) dashed underline 0.2rem;
+  padding: 0.2rem;
+  transition: color 0.2s;
+}
+
+footer a:visited {
+  color: var(--background);
+}
+
+footer a:hover {
+  color: var(--secondary);
+}
+
+.to-right {
+  float: right;
+}
