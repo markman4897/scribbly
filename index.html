@@ -4,30 +4,56 @@
 <head>
   <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css"
     integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
-  <link rel="stylesheet" href="index.css">
+  <script src="https://kit.fontawesome.com/514cc33d9d.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="base.css">
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Scribbly</title>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="page.css">
+  <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
-  <header>
+  <header class="center-text">
+    <a title="home" href="index.html" class="link"><i class="fas fa-home fa-2x to-left"></i></a>
     <h1>Scribbly</h1>
   </header>
-  <main class="center">
-    <a title="game" href="game.html" class="button button-bright pure-button pure-button-primary">start a new game</a>
+  <main class="flex-extend">
+    <section class="main-first flex-extend">
+      <h2>Description</h2>
+      <p>A simple aesthetic drawing program. You can select the colour and size of the brush and draw away.</p>
+      <p>There is also a CLEAR button that clears the canvas so you can start over and even a SAVE button that lets you
+        download your lovely creation.</p>
+      <p>It even supports mobile!</p>
+      <div class="center-content">
+        <a title="game" href="game.html" class="button button-bright pure-button pure-button-primary">start a
+          new
+          drawing</a>
+      </div>
+    </section>
+    <aside class="main-bordered center-text">
+      <h2>Gallery</h2>
+      <p>Check out some of the creations from players</p>
+      <article class="main-bordered-images flex-extend">
+        <img src="images/scribbly.jpg" alt="creation one" class="pure-img small-image" loading="lazy">
+        <img src="images/scribbly1.jpg" alt="creation two" class="pure-img small-image" loading="lazy">
+        <img src="images/scribbly2.jpg" alt="creation three" class="pure-img small-image" loading="lazy">
+      </article>
+      <a title="gallery" href="gallery.html" class="button button-bright pure-button pure-button-primary">gallery</a>
+    </aside>
   </main>
   <footer>
     <div>who knows... this might just work someday</div>
-    <div class="to-right">
+    <nav class="to-right">
       <span>|</span>
       <a title="about" class="link" href="about.html">about</a>
       <a title="source code" class="link" href="https://github.com/markman4897/scribbly">source code</a>
       <a title="about" class="link" href="about.html">contact me</a>
-    </div>
+    </nav>
   </footer>
 </body>
 

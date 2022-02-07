@@ -1,0 +1,23 @@
+.main-bordered {
+  border: 0.2em solid var(--secondary);
+  border-radius: 0.5em;
+  padding: 0.2em;
+}
+
+
+/* MEDIA QUERIES */
+
+/* regular css for mobile and tablet portrait */
+
+/* landscape */
+@media 
+  screen and (orientation:landscape) and (min-width: 35.5em),
+  screen and (min-width: 48em) {
+    .main-first {
+      flex: 2 0 0;
+    }
+
+    .main-bordered {
+      flex: 1 0 0;
+    }
+}
