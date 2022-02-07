@@ -14,10 +14,10 @@
   screen and (orientation:landscape) and (min-width: 35.5em),
   screen and (min-width: 48em) {
     .main-first {
-      flex: 2 0 0;
+      flex: 2;
     }
 
     .main-bordered {
-      flex: 1 0 0;
+      flex: 1;
     }
 }

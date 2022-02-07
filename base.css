@@ -65,6 +65,11 @@ p {
   color: var(--background);
 }
 
+.button-transparent, a.button-transparent {
+  border: 0;
+  background: 0;
+}
+
 .link {
   text-decoration: dashed underline 0.2em;
   padding: 0.2em;
@@ -72,7 +77,7 @@ p {
 }
 
 .link, .link:visited, .link:hover {
-  color: inherit;
+  color: unset;
 }
 
 
@@ -103,6 +108,10 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.center-content-vertical {
+  flex-direction: column;
 }
 
 

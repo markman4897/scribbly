@@ -21,9 +21,16 @@
   <header class="center-text">
     <a title="home" href="index.html" class="link"><i class="fas fa-home fa-2x to-left"></i></a>
     <h1>Scribbly</h1>
+    <audio id="radio" src="http://relay.publicdomainradio.org:80/jazz_swing.aac">
+      radio not supported
+    </audio>
+    <button class="to-right button button-transparent" onclick="radioToggle()">
+      <i id="radio-button-icon" class="fas fa-play-circle fa-2x"></i>
+    </button>
+    <script src="radio.js"></script>
   </header>
   <main class="flex-extend">
-    <section class="main-first flex-extend">
+    <section class="main-first flex-extend center-content center-content-vertical">
       <h2>Description</h2>
       <p>A simple aesthetic drawing program. You can select the colour and size of the brush and draw away.</p>
       <p>There is also a CLEAR button that clears the canvas so you can start over and even a SAVE button that lets you
@@ -47,7 +54,8 @@
     </aside>
   </main>
   <footer>
-    <div>who knows... this might just work someday</div>
+    <div id="footer-random-quote">who knows... this might just work someday</div>
+    <script src="random_footer_quote.js"></script>
     <nav class="to-right">
       <span>|</span>
       <a title="about" class="link" href="about.html">about</a>

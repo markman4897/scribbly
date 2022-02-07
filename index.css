@@ -12,6 +12,10 @@
   margin: 0.5em;
 }
 
+.small-image {
+  border-radius: 0.5em;
+}
+
 
 /* MEDIA QUERIES */
 
@@ -31,11 +35,8 @@
     }
 
     .small-image {
-      min-width: 5em;
       flex-grow: 1;
       flex-shrink: 1;
       flex-basis: 5em;
-      border-radius: 0.5em;
-      min-height: 0;
     }
 }
