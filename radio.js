@@ -1,6 +1,9 @@
 
 let radio = document.getElementById('radio')
 let icon = document.getElementById('radio-button-icon')
+
+radio.volume = 0.1
+
 function radioToggle() {
   if (radio.paused) {
     radio.play()
