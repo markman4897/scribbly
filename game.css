@@ -1,6 +1,6 @@
 main {
   flex: 1;
-  width: 100%;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
   background: transparent;
@@ -113,14 +113,14 @@ main {
   height: 2.5rem;
   aspect-ratio: 1;
   background-color: var(--tertiary);
-  border-radius: 10px;
+  border-radius: 0.8rem;
   margin: 0.5rem;
   display: grid;
   justify-content: center;
   align-content: center;
 }
 
-.size > * {
+.size > div {
   background-color: black;
   border-radius: 50%;
   aspect-ratio: 1;
