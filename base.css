@@ -8,6 +8,7 @@
   --tertiary: #a07fc9;
   --accent: #744c5c;
   --background: #3c3c4c;
+  --shadow: rgba(0,0,0,0.3)
 }
 
 * {
@@ -21,7 +22,6 @@ html {
   left: 0;
   bottom: 0;
   right: 0;
-  font-size: 22px;
 }
 
 body {
@@ -35,6 +35,7 @@ body {
 html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
   font-family: 'Oswald', sans-serif;
   color: var(--secondary);
+  font-size: 22px;
 }
 
 
@@ -43,14 +44,27 @@ html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
 header {
   background: var(--primary);
   padding: 0.2em;
-  text-shadow: 2px 2px 2px var(--accent);
+}
+
+header > h1,
+header i {
+  text-shadow: 0.1rem 0.1rem 0.1rem var(--accent);
 }
 
 header > h1 {
   display: inline-block;
 }
 
-header .link:hover {
+header > .button {
+  padding: 0;
+  box-shadow: none;
+}
+
+header > .button:hover {
+  box-shadow: none;
+}
+
+header > .link:hover {
   color: var(--background);
 }
 
@@ -104,7 +118,7 @@ h1, h2, h3, h4, h5, h6 {
 h1, h2, h3 {
   font-family: 'Lobster', cursive;
   text-transform: capitalize;
-  text-shadow: 2px 2px 2px var(--accent);
+  text-shadow: 0.1rem 0.1rem 0.1rem var(--shadow);
 }
 
 hr {
@@ -155,10 +169,21 @@ scrollbar-thumb:hover,
 /* BUILDING BLOCKS */
 
 .button, a.button {
+  display: inline-block;
   border: 0;
   border-radius: 0.5em;
   font-weight: bold;
   text-transform: uppercase;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  box-shadow: 0.1rem 0.1rem 0.1rem var(--shadow);
+  transition: color 0.2s, transform 0.1s, box-shadow 0.1s;
+}
+
+.button:hover,
+a.button:hover {
+  transform: translateY(-0.2rem) scale(1.02, 1.02);
+  box-shadow: 0.2rem 0.2rem 0.2rem var(--shadow);
 }
 
 .button > .big,
@@ -192,6 +217,9 @@ a.button > .big {
 }
 
 .image {
+  max-width: 100%;
+  height: auto;
+  display: block;
   border-radius: 0.5em;
 }
 
