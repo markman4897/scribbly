@@ -38,6 +38,59 @@ html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
 }
 
 
+/* HEADER AREA */
+
+header {
+  background: var(--primary);
+  padding: 0.2em;
+  text-shadow: 2px 2px 2px var(--accent);
+}
+
+header > h1 {
+  display: inline-block;
+}
+
+header .link:hover {
+  color: var(--background);
+}
+
+
+/* MAIN AREA */
+
+main {
+  background: var(--accent);
+  overflow: auto;
+}
+
+
+/* FOOTER AREA */
+
+footer {
+  background: var(--primary);
+  padding: 0.2em;
+  color: var(--background);
+  font-weight: bold;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#footer-random-quote {
+  flex: 1 0 50%;
+  transition: opacity 1.2s ease-in-out;
+}
+
+
+
+footer .link {
+  color: var(--background);
+  text-decoration-color: var(--background);
+}
+
+footer .link:hover {
+  color: var(--secondary);
+}
+
+
 /* BASIC ELEMENTS */
 
 h1 {
@@ -108,9 +161,19 @@ scrollbar-thumb:hover,
   text-transform: uppercase;
 }
 
+.button > .big,
+a.button > .big {
+  display: none;
+}
+
 .button-bright, a.button-bright {
   background: var(--secondary);
   color: var(--background);
+}
+
+.button-tertiary, a.button-tertiary {
+  background: var(--tertiary);
+  color: var(--secondary);
 }
 
 .button-transparent, a.button-transparent {
@@ -178,63 +241,6 @@ scrollbar-thumb:hover,
 }
 
 
-/* HEADER AREA */
-
-header {
-  background: var(--primary);
-  padding: 0.2em;
-  text-shadow: 2px 2px 2px var(--accent);
-}
-
-header > h1 {
-  display: inline-block;
-}
-
-header .link:hover {
-  color: var(--background);
-}
-
-
-/* MAIN AREA */
-
-main {
-  background: var(--accent);
-  overflow: auto;
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-}
-
-
-/* FOOTER AREA */
-
-footer {
-  background: var(--primary);
-  padding: 0.2em;
-  color: var(--background);
-  font-weight: bold;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-#footer-random-quote {
-  flex: 1 0 50%;
-  transition: opacity 1.2s ease-in-out;
-}
-
-
-
-footer .link {
-  color: var(--background);
-  text-decoration-color: var(--background);
-}
-
-footer .link:hover {
-  color: var(--secondary);
-}
-
-
 /* MEDIA QUERIES */
 
 /* regular css for mobile and tablet portrait */
@@ -243,8 +249,16 @@ footer .link:hover {
 @media
   screen and (orientation:landscape) and (min-width: 35.5em),
   screen and (min-width: 48em) {
-  main {
-    /* placeholder */
+  .button > .small,
+  a.button > .small {
+    display: none;
+  }
+
+  .button > .big {
+    display: block;
+  }
+  a.button > .big {
+    display: inline;
   }
 }
 

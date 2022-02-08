@@ -1,8 +1,137 @@
 main {
-  flex: 1;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+}
+
+#canvas-container {
   max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  aspect-ratio: 4/3;
+  display: flex;
+  justify-content: center;
+}
+
+#canvas {
+  height: 100%;
+  aspect-ratio: 4/3;
+  background-color: var(--secondary);
+  border-radius: 0 0 0.5rem 0.5rem;
+  cursor: cell;
+}
+
+#controlls {
+  background-color: var(--accent);
+  min-height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+#colors {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.colors-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.clr{
+  height: 1em;
+  aspect-ratio: 1;
+}
+
+#buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+#sizes {
+  width: fit-content;
+  display: flex;
+}
+
+.size {
+  height: 2em;
+  aspect-ratio: 1;
+  border-radius: 0.5em;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.size > div {
+  background-color: black;
+  border-radius: 50%;
+  aspect-ratio: 1;
+}
+
+/* #extra {
+  width: fit-content;
+  display: flex;
+} */
+
+#chat {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--accent);
+  margin: 0.5em;
+  padding: 0.2em;
+  border: 0.2em solid var(--secondary);
+  border-radius: 0.5em;
+}
+
+#chat > h2 {
+  text-shadow: 2px 2px 2px var(--background);
+}
+
+#chat-text {
+  border-bottom: 0.2em dashed var(--secondary);
+}
+
+#chat-text > span {
+  font-weight: bold;
+}
+
+#chat-input {
+  height: 100%;
+  border: 0;
+  background-color: transparent;
+  color: var(--secondary);
+}
+
+#chat-input:focus {
+  outline: 0;
+}
+
+#chat-inputs {
+  height: 1.8rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.chat-inputs > button {
+  margin: 0.2rem;
+  padding: 0 0.2rem;
+}
+
+.button, a.button {
+  padding: 0 0.5em;
+  height: 100%;
+}
+
+
+/* 
+main {
   background: transparent;
   padding: 0;
   display: flex;
@@ -14,8 +143,8 @@ main {
   flex-direction: column;
 }
 
-.canvas-container {
-  height: calc(100% - 3rem);
+#canvas-container {
+  height: calc(100% - 2rem);
   aspect-ratio: 4/3;
   display: flex;
   justify-content: center;
@@ -26,13 +155,12 @@ main {
   aspect-ratio: 4/3;
   background-color: var(--secondary);
   border-radius: 0 0 0.5rem 0.5rem;
-  /*image-rendering: pixelated;*/
   cursor: cell;
 }
 
 #controlls {
   background-color: var(--accent);
-  height: 3rem;
+  height: 2rem;
   border-radius: 0.5rem 0.5rem 0 0;
   display: flex;
   align-items: center;
@@ -40,7 +168,6 @@ main {
 }
 
 #chat {
-  flex: 1;
   display: flex;
   flex-direction: column;
   background-color: var(--accent);
@@ -56,7 +183,6 @@ main {
 }
 
 #chat-text {
-  flex: 1;
   border-bottom: 0.2rem dashed var(--secondary);
 }
 
@@ -66,7 +192,6 @@ main {
 
 #chat-input {
   height: 100%;
-  flex: 1;
   border: 0;
   background-color: transparent;
   color: var(--secondary);
@@ -76,7 +201,7 @@ main {
   outline: 0;
 }
 
-.chat-inputs {
+#chat-inputs {
   height: 1.8rem;
   display: flex;
   flex-direction: row;
@@ -100,21 +225,19 @@ main {
 }
 
 .clr{
-  height: calc(3rem / 2);
+  height: 1em;
   aspect-ratio: 1;
 }
 
 #sizes {
-  margin: 0.2rem 1rem;
   display: flex;
 }
 
 .size {
-  height: 2.5rem;
+  height: 2em;
   aspect-ratio: 1;
   background-color: var(--tertiary);
-  border-radius: 0.8rem;
-  margin: 0.5rem;
+  border-radius: 0.5em;
   display: grid;
   justify-content: center;
   align-content: center;
@@ -128,39 +251,4 @@ main {
 
 #buttons {
   margin: 0.2rem 0.4rem;
-}
-
-#buttons > button{
-  border: none;
-  outline: none;
-  height: 100%;
-  margin: 0 0.2rem;
-  padding: 0.5rem;
-  border-radius: 3px;
-  background-color: var(--tertiary);
-  color: var(--secondary);
-  font-weight: bold;
-}
-
-@media screen and (max-width: 64em) {
-  body {
-    height: 100vh;
-    width: 100vw;
-  }
-
-  main, #controlls, #canvas {
-    border-radius: 0;
-  }
-
-  header, footer {
-    padding: 0.2rem;
-  }
-
-  header {
-    border-radius: 0 0 0.5rem 0.5rem;
-  }
-
-  footer {
-    border-radius: 0.5rem 0.5rem 0 0;
-  }
-}
+} */

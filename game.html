@@ -4,8 +4,11 @@
 <head>
   <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css"
     integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
-  <script src="https://kit.fontawesome.com/514cc33d9d.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+
   <link rel="stylesheet" href="base.css">
+  <script src="radio.js" defer></script>
+  <script src="random_footer_quote.js" defer></script>
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,11 +17,12 @@
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
   <link rel="stylesheet" href="game.css">
+  <script src="game.js" defer></script>
   <!-- <base target="_blank"> -->
 </head>
 
 <body>
-  <header>
+  <header class="center-text">
     <a title="home" href="index.html" class="link"><i class="fas fa-home fa-2x to-left"></i></a>
     <h1>Scribbly</h1>
     <audio id="radio" src="http://relay.publicdomainradio.org:80/jazz_swing.aac">
@@ -27,9 +31,8 @@
     <button class="to-right button button-transparent" onclick="radioToggle()">
       <i id="radio-button-icon" class="fas fa-play-circle fa-2x"></i>
     </button>
-    <script src="radio.js"></script>
   </header>
-  <main>
+  <main class="flex-extend">
     <div id="container">
       <div id="controlls">
         <div id="colors">
@@ -54,54 +57,55 @@
             <div class="clr" data-clr="#ffffff"></div>
           </div>
         </div>
-        <div id="sizes">
-          <div class="size">
-            <div class="size-ball" data-size="5"></div>
+        <div id="buttons" class="flex-extend">
+          <div id="sizes" class="">
+            <div class="size button button-tertiary pure-button pure-button-primary">
+              <div class="size-ball" data-size="5"></div>
+            </div>
+            <div class="size button button-tertiary pure-button pure-button-primary">
+              <div class="size-ball" data-size="10"></div>
+            </div>
+            <div class="size button button-tertiary pure-button pure-button-primary">
+              <div class="size-ball" data-size="15"></div>
+            </div>
+            <div class="size button button-tertiary pure-button pure-button-primary">
+              <div class="size-ball" data-size="25"></div>
+            </div>
           </div>
-          <div class="size">
-            <div class="size-ball" data-size="10"></div>
+          <div id="extra" class="">
+            <button id="clear" class="button button-tertiary pure-button pure-button-primary"><span
+                class="big">clear</span><span class="small">c</span></button>
+            <button id="save" class="button button-tertiary pure-button pure-button-primary"><span
+                class="big">save</span><span class="small">s</span></button>
           </div>
-          <div class="size">
-            <div class="size-ball" data-size="15"></div>
-          </div>
-          <div class="size">
-            <div class="size-ball" data-size="25"></div>
-          </div>
-        </div>
-        <div id="buttons">
-          <button id="clear">CLEAR</button>
-          <button id="save">SAVE</button>
         </div>
       </div>
-      <div class="canvas-container">
+      <div id="canvas-container">
         <canvas id="canvas" width="800" height="600"></canvas>
       </div>
     </div>
-    <div id="chat">
+    <div id="chat" class="flex-extend">
       <h2>Chat:</h2>
-      <div id="chat-text">
+      <div id="chat-text" class="flex-extend">
         <span>Clive:</span> oh snap, this is awesome!<br>
         <span>Bob:</span> just you wait till you see my next painting :)<br>
       </div>
-      <div class="chat-inputs">
-        <input id="chat-input" type="text">
+      <div id="chat-inputs">
+        <input id="chat-input" class="flex-extend" type="text">
         <button type="button" class="button button-bright pure-button pure-button-primary"
           onclick="send_input_to_chat()">SEND</button>
       </div>
     </div>
   </main>
   <footer>
-    <div>who knows... this might just work someday</div>
-    <nav class="to-right">
+    <div id="footer-random-quote" class="center-content">who knows... this might just work someday</div>
+    <nav class="center-content">
       <span>|</span>
       <a title="about" class="link" href="about.html">about</a>
       <a title="source code" class="link" href="https://github.com/markman4897/scribbly">source code</a>
-      <a title="about" class="link" href="about.html">contact me</a>
+      <a title="author" class="link" href="author.html">author</a>
     </nav>
   </footer>
-
-
-  <script src="game.js"></script>
 </body>
 
 </html>
