@@ -10,6 +10,10 @@
   --background: #3c3c4c;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   background: var(--background);
   position: fixed;
@@ -111,7 +115,14 @@ p {
 }
 
 .center-content-vertical {
+  display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.transparent {
+  opacity: 0;
 }
 
 
@@ -149,14 +160,18 @@ main {
 footer {
   background: var(--primary);
   padding: 0.2em;
-  text-align: center;
   color: var(--background);
   font-weight: bold;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-footer > div {
-  display: inline-block;
+#footer-random-quote {
+  flex: 1 0 50%;
+  transition: opacity 1.2s ease-in-out;
 }
+
+
 
 footer .link {
   color: var(--background);
@@ -173,7 +188,9 @@ footer .link:hover {
 /* regular css for mobile and tablet portrait */
 
 /* mobile landscape */
-@media screen and (orientation:landscape) and (min-width: 35.5em) {
+@media
+  screen and (orientation:landscape) and (min-width: 35.5em),
+  screen and (min-width: 48em) {
   main {
     flex-direction: row;
   }

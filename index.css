@@ -2,17 +2,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 1em;
 }
 
 .main-bordered-images {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
   gap: 0.5em;
-  margin: 0.5em;
+  margin: 1em;
 }
 
-.small-image {
+.image-small {
   border-radius: 0.5em;
 }
 
@@ -21,22 +20,15 @@
 
 /* regular css for mobile and tablet portrait */
 
-/* landscape */
+/* landscape mobile or tablet and bigger */
 @media 
   screen and (orientation:landscape) and (min-width: 35.5em),
   screen and (min-width: 48em) {
     .main-bordered {
-      height: calc(100% - 0.8em);
+      height: fit-content;
     }
 
     .main-bordered-images {
-      flex: 1;
-      flex-wrap: wrap;
-    }
-
-    .small-image {
-      flex-grow: 1;
-      flex-shrink: 1;
-      flex-basis: 5em;
+      grid-template-columns: 1fr 1fr;
     }
 }

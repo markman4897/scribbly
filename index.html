@@ -5,7 +5,10 @@
   <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css"
     integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/514cc33d9d.js" crossorigin="anonymous"></script>
+
   <link rel="stylesheet" href="base.css">
+  <script src="radio.js" defer></script>
+  <script src="random_footer_quote.js" defer></script>
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,10 +30,9 @@
     <button class="to-right button button-transparent" onclick="radioToggle()">
       <i id="radio-button-icon" class="fas fa-play-circle fa-2x"></i>
     </button>
-    <script src="radio.js"></script>
   </header>
   <main class="flex-extend">
-    <section class="main-first flex-extend center-content center-content-vertical">
+    <section class="main-free flex-extend center-text">
       <h2>Description</h2>
       <p>A simple aesthetic drawing program. You can select the colour and size of the brush and draw away.</p>
       <p>There is also a CLEAR button that clears the canvas so you can start over and even a SAVE button that lets you
@@ -42,20 +44,20 @@
           drawing</a>
       </div>
     </section>
-    <aside class="main-bordered center-text">
+    <aside class="main-bordered center-text center-content">
       <h2>Gallery</h2>
       <p>Check out some of the creations from players</p>
-      <div class="main-bordered-images flex-extend">
-        <img src="images/scribbly.png" alt="creation one" class="pure-img small-image" loading="lazy">
-        <img src="images/scribbly1.png" alt="creation two" class="pure-img small-image" loading="lazy">
-        <img src="images/scribbly2.png" alt="creation three" class="pure-img small-image" loading="lazy">
+      <div class="main-bordered-images">
+        <img src="images/scribbly.png" alt="creation one" class="pure-img image-small" loading="lazy">
+        <img src="images/scribbly1.png" alt="creation two" class="pure-img image-small" loading="lazy">
+        <img src="images/scribbly2.png" alt="creation three" class="pure-img image-small" loading="lazy">
+        <img src="images/scribbly3.png" alt="creation four" class="pure-img image-small" loading="lazy">
       </div>
       <a title="gallery" href="gallery.html" class="button button-bright pure-button pure-button-primary">gallery</a>
     </aside>
   </main>
   <footer>
-    <div id="footer-random-quote">who knows... this might just work someday</div>
-    <script src="random_footer_quote.js"></script>
+    <div id="footer-random-quote" class="center-text">who knows... this might just work someday</div>
     <nav class="to-right">
       <span>|</span>
       <a title="about" class="link" href="about.html">about</a>
