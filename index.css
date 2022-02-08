@@ -2,17 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1em;
 }
 
 .main-bordered-images {
   display: grid;
   gap: 0.5em;
   margin: 1em;
-}
-
-.image-small {
-  border-radius: 0.5em;
 }
 
 
@@ -25,7 +20,7 @@
   screen and (orientation:landscape) and (min-width: 35.5em),
   screen and (min-width: 48em) {
     .main-bordered {
-      height: fit-content;
+      height: fit-content; 
     }
 
     .main-bordered-images {

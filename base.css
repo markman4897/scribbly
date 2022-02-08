@@ -21,6 +21,7 @@ html {
   left: 0;
   bottom: 0;
   right: 0;
+  font-size: 22px;
 }
 
 body {
@@ -39,8 +40,11 @@ html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
 
 /* BASIC ELEMENTS */
 
-h1, h2, h3, h4, h5, h6 {
+h1 {
   margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
 
@@ -50,8 +54,48 @@ h1, h2, h3 {
   text-shadow: 2px 2px 2px var(--accent);
 }
 
-p {
-  margin: 0.5em 0;
+hr {
+  border: 0;
+  border-top: 0.2em dashed;
+}
+
+ul {
+  padding-left: 1em;
+  list-style: none;
+}
+
+li::before {
+  content: "- ";
+  font-weight: bold;
+}
+
+scrollbar,
+::-webkit-scrollbar {
+  height: 0.8em;
+  width: 0.8em;
+}
+
+scrollbar-track,
+::-webkit-scrollbar-track {
+  background: var(--tertiary);
+  border-radius: 0.5em;
+}
+
+scrollbar-corner,
+::-webkit-scrollbar-corner {
+  background: var(--tertiary);
+  border-radius: 0.5em;
+}
+ 
+scrollbar-thumb,
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 0.5em;
+}
+
+scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary);
 }
 
 
@@ -75,13 +119,17 @@ p {
 }
 
 .link {
-  text-decoration: dashed underline 0.2em;
+  text-decoration: underline dashed 0.15em;
   padding: 0.2em;
   transition: color 0.2s;
 }
 
 .link, .link:visited, .link:hover {
   color: unset;
+}
+
+.image {
+  border-radius: 0.5em;
 }
 
 
@@ -119,6 +167,10 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.text-left {
+  text-align: left;
 }
 
 .transparent {
@@ -192,7 +244,7 @@ footer .link:hover {
   screen and (orientation:landscape) and (min-width: 35.5em),
   screen and (min-width: 48em) {
   main {
-    flex-direction: row;
+    /* placeholder */
   }
 }
 

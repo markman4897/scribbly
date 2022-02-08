@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css"
+    integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+
+  <link rel="stylesheet" href="base.css">
+  <script src="radio.js" defer></script>
+  <script src="random_footer_quote.js" defer></script>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scribbly</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="page.css">
+</head>
+
+<body>
+  <header class=" center-text">
+    <a title="home" href="index.html" class="link"><i class="fas fa-home fa-2x to-left"></i></a>
+    <h1>Scribbly</h1>
+    <audio id="radio" src="http://relay.publicdomainradio.org:80/jazz_swing.aac">
+      radio not supported
+    </audio>
+    <button class="to-right button button-transparent" onclick="radioToggle()">
+      <i id="radio-button-icon" class="fas fa-play-circle fa-2x"></i>
+    </button>
+  </header>
+  <main class="flex-extend">
+    <section class="main-free flex-extend center-text">
+      <h2>the story behind this website</h2>
+      <p>The idea for this website randomly arose one day, when I was playing a game of <a class="link"
+          href="https://skribbl.io/">Skribbl.io</a> with my friends and something bothered me. Specifically
+        I didn't
+        like how it's kind of annoying that your custom word list doesn't get saved in browser, so you need to save it
+        manually not to lose it.</p>
+      <p>On an unrelated note, not long before I was trying to make a game that would include a multiplayer element.
+        Whilst browsing for ways to incorporate it, I found WebRTC.</p>
+      <p>So when I was thinking about things I would add to <a class="link" href="https://skribbl.io/">Skribbl.io</a> I
+        remembered about this WebRTC thing and figured it would be a good
+        practise to try to remake the fun drawing game in my own style.</p>
+      <h3>Why I never finish projects</h3>
+      <p>So starting this fine endeavour, I asked around a bit if anyone has tried to do this or something similar. You
+        know, to get some tips on how to best approach this. While noone in my close friends group ever made a similar
+        project, almost everyone advised to use some sort of CSS framework. I'm not kidding, literally
+        <strong>everyone.</strong>
+      </p>
+      <p>Of course, as per usual, I said to myself "alright, lets make a vanilla CSS mockup and then we'll see". And
+        this was the start of my demise.</p>
+      <h3>Lucky strike with finding learning resources</h3>
+      <p>First things first. If I want to even come close to making a <a class="link"
+          href="https://skribbl.io/">Skribbl.io</a> clone I'd need to make a very basic drawing application. And so the
+        Googling journey begins.</p>
+      <p>Surprisingly enough, the <a title="dev.to article" class="link"
+          href="https://dev.to/0shuvo0/lets-create-a-drawing-app-with-js-4ej3">first result</a> had everything I needed.
+        I quickly <s>copied over</s> learned about how to make a basic drawing app. A few modifications and BAM! Drawing
+        part done.</p>
+      <h3>There's more than one way to browse the web</h3>
+      <p>Different people have different needs. That's an undisputable fact that should always be included into website
+        development (among other things, of course). And by that I don't just mean people with disabilities, but also
+        mean to point out that different people can have different preferences when it comes to browsing the internet.
+      </p>
+      <p>I'm no expert when it comes to accessibility, but I learned that there is a point to links having underlines
+        and different colours and buttons changing visually when hovered over. The point is general recognition. People
+        are more likely to notice that something is clickable if it looks like clickable things on other websites.</p>
+      <p>There are also other things, as having a familiar layout of navigation elements and navigation through the
+        clickable things with the tab key. Another important one is knowing when to use a specific HTML element as they
+        usually have a <a title="article about HTML semantics"
+          href="https://developer.mozilla.org/en-US/docs/Glossary/Semantics" class="link">semantic</a> meaning along
+        with the functional one. And if you are ready to go the extra mile,
+        there's <a title="Accessible Rich Internet Applications"
+          href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA" class="link">ARIA</a>.</p>
+      <h3>Fun with CSS</h3>
+      <p>So I have a love/hate relationship with CSS. I find its capabilities amazing and there's always something new
+        "made with only CSS" that is just mind bending. When they added CSS Grids and Flexbox I felt like I can make any
+        layout in the world.</p>
+      <p>But then there's practical side. While I learned all my CSS from just fooling around with it and have
+        accumulated knowledge for more years than I care to admit, there's always that one little thing that catches you
+        off guard, something that doesn't quite work as it seems. If you ever written any, you know exactly what I'm
+        talking about.</p>
+      <p>What this boils down to is me, sitting behind a computer at 4am, thinking about how to make a box keep its darn
+        aspect ratio when everything around it is responsive. And this leads to rewriting the whole CSS file, from
+        ground up, for the 5th time... and the aspect ratio is still not fixed... and I just need sleep at this point.
+      </p>
+      <h3>Things take a weird turn</h3>
+      <p>So at weird hours come weird ideas. After a few days of minimal sleep and a sleeping schedule of a vampire, I
+        need a break. And what better way to relax than to listen to some chill music. And that, at least for me, would
+        be old jazz.</p>
+      <p>While searching for the right playlist I came across online jazz radios. Interesting. And jazz can be pretty
+        old some times. Okay. Connect the two together and you find old public domain online jazz radio station. Fun.
+      </p>
+      <p>And because of sleep depravation and sudden spike of jazz appreciation, I get the bright idea to try and add
+        this radio station onto my website. Lo and behold, it's pretty simple and 10 minutes later, we have a nice
+        button at the top right that toggles the playback of the online radio station. Cool.</p>
+      <p>But this arises a question. While usage of public domain material is fair game (most of the time), what about
+        this specific radio station. The short and the long answer is "I don't know". If you, the reader, know more
+        about this, please contact me via service you can find on the <a class="link" href="author.html">author</a>
+        page.</p>
+      <h3>Actually thinking through CSS</h3>
+      <p>After a crushing defeat at the battle of CSS I finally came to my senses and decided to plan things out. I sat
+        down in front of a blank piece of paper and drawn a phone, tablet and monitor.</p>
+      <p>In reality, they were just different sized squares and I planned out a desired look for this webpage. A few
+        iterations later I had something that made sense and started to rework the entire CSS file for the n-th time.
+        But this time I had a plan.</p>
+      <p>First things first, I decided to pursuit a <a
+          href="https://medium.com/@Vincentxia77/what-is-mobile-first-design-why-its-important-how-to-make-it-7d3cf2e29d00"
+          class="link">mobile first approach</a>. This made things significantly easier and I have no idea why I never
+        start like this.
+        There's just something in the paper that makes me remember about this. But tl;dr: you should always plan first,
+        before starting to write CSS files to oblivion and back.</p>
+      <h3>Blissful ignorance</h3>
+      <p>This should also be the time to plan the positioning of HTML attributes and think about general accessiblity.
+        And to a degree, I did all that. But it's really easy to slip and think things through with a "design first,
+        accessibility second" kind of approach and this is almost always a bad idea. But sometimes you just forget
+        certain things. Good thing websites are not set in stone after you publish them.</p>
+      <h3>the CSS gods show mercy</h3>
+      <p>Usually when you don't know how to do something, you google it. But when you don't even know how to pose a
+        question, you ask your developer friends (the only people willing to listen to your idea long enough to
+        understand it).</p>
+      <p>Funny thing is that some times (dare I say most of the time), after you explain your problem to a person, you
+        gain some clarity about it yourself. So it even helps if you explain things to peolpe who don't necessarily know
+        how to code just for that reason.</p>
+      <p>Skip forward and after who knows how many iterations of CSS, I finally got it to play somewhat nicely. That
+        mainly means nothing gets magically hidden or grows out of control at certain screen sizes. This is the time to
+        try to open your website on every device you own and not forget about <strong>screen orientation</strong>.</p>
+      <h3>oh hey, i can use this</h3>
+      <p>I'm studying informatics and that brings about a certain amount of work. This time around we got an assignment
+        to make a website. Immediately I thought of this little project. Great, let's combine hobby and study, what a
+        great idea, I'm sure nothing bad is gonna happen.</p>
+      <p>Let me start by saying this, to be fair, this project is a bit more advanced than what the assignment was
+        requesting, but I just couldn't help myself. At first it seemed like a good idea for a while, but as time passed
+        it became abundantly clear that I overscaled the project and am not going to have enough time to finish
+        everything by the
+        due date.</p>
+      <p>But my luck was found in the detail. As I previously mentioned, the project is more advanced than the
+        assignment and there we go. I can only make the parts of it that are important for the assignment and finish the
+        whole thing later. Now that sounds doable.</p>
+      <h3>saving time by not doing the required work</h3>
+      <p>So the assignment has two parts, the project and a report. The project is this website, but a report can't just
+        be an afterthought. As I was running out of time I remembered the professor telling us that we can include the
+        report in our website. So instead of writing and formatting a Word document, I figured I'd do this page instead.
+      </p>
+      <p>The idea was good, but the reality of it is that it has taken around 3h to write to this point and I'm still
+        not done, with the project as a whole or writing out this page (let alone finished with revising this massive
+        wall of text).</p>
+      <h3>forgetting to finish this</h3>
+      <p>I can already see myself panicking about how I forgot to finish this <i>great wall of text</i> after submitting
+        the project. But that's just how life is from time to time I guess and as they say "don't cry over spilled
+        milk".</p>
+      <p>To whom it may concern, if you find this documentation about the process of building this website lacking,
+        please kindly check the <a class="link" href="https://github.com/markman4897/scribbly">source code</a> for
+        potential updates before lowering the grade
+        of the assignment. Thank you in advance.</p>
+      <hr>
+      <h2>future plans</h2>
+      <p>this is a floating title meaning it will move downward as the project continues</p>
+      <ul class="text-left">
+        <li>use HUGO</li>
+        <li>actually make this a drawing game</li>
+        <li>check the websites accessibility</li>
+        <li>make this page into a microblog (or link it to one or something)</li>
+        <li>rework CSS about 1000... more time</li>
+      </ul>
+    </section>
+    <aside class="main-bordered center-text">
+      <h2>Links to things that helped me build this website</h2>
+      <a title="dev.to article" href="https://dev.to/0shuvo0/lets-create-a-drawing-app-with-js-4ej3" class="link">
+        article about using canvas to draw
+      </a>
+      <a href="https://developer.mozilla.org/en-US/docs/Glossary/Semantics" class="link">
+        article about HTML semantics
+      </a>
+      <a title="css-tricks article" href="https://css-tricks.com/auto-sizing-columns-css-grid-auto-fill-vs-auto-fit/"
+        class="link">
+        article about auto-fit vs auto-fill
+      </a>
+      <a title="Tiny Png website" href="https://tinypng.com/" class="link">
+        image optimisation
+      </a>
+      <a title="W3C validator website" href="https://validator.w3.org/" class="link">
+        markup validator
+      </a>
+      <a href="https://css-tricks.com/" class="link">
+        css tricks
+      </a>
+      <a href="https://stackoverflow.com/" class="link">
+        stack overflow
+      </a>
+      <a href="https://developer.mozilla.org/" class="link">
+        MDN Web Docs
+      </a>
+      <a href="https://www.w3schools.com/" class="link">
+        W3Schools
+      </a>
+    </aside>
+  </main>
+  <footer>
+    <div id="footer-random-quote" class="center-text">who knows... this might just work someday</div>
+    <nav class="center-content">
+      <span>|</span>
+      <a title="about" class="link" href="about.html">about</a>
+      <a title="source code" class="link" href="https://github.com/markman4897/scribbly">source code</a>
+      <a title="author" class="link" href="author.html">author</a>
+    </nav>
+  </footer>
+</body>
+
+</html>
