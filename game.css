@@ -1,3 +1,7 @@
+:root {
+  --max-canvas-height: 100%;
+}
+
 main {
   background: transparent;
   display: flex;
@@ -17,7 +21,7 @@ main {
 }
 
 #canvas {
-  height: 100%;
+  max-height: var(--max-canvas-height);
   aspect-ratio: 4/3;
   background-color: var(--secondary);
   border-radius: 0 0 0.5rem 0.5rem;
@@ -26,24 +30,18 @@ main {
 
 #controlls {
   background-color: var(--accent);
-  min-height: 2rem;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
-#colors {
-  display: flex;
-  align-self: start;
-  align-items: center;
-  flex-direction: column;
+.colors {
+  overflow: hidden;
 }
 
 .colors-row {
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  flex-direction: row;
 }
 
 .clr{
@@ -53,16 +51,17 @@ main {
 
 #buttons {
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
+  padding: 0.1em 0;
 }
 
 #sizes {
-  width: fit-content;
-  display: flex;
+  flex-direction: row;
 }
 
 .size {
-  height: 2em;
+  height: 100%;
   aspect-ratio: 1;
   border-radius: 0.5em;
   display: grid;
@@ -70,16 +69,20 @@ main {
   align-content: center;
 }
 
-.size > div {
+.size-ball {
   background-color: black;
   border-radius: 50%;
   aspect-ratio: 1;
 }
 
-/* #extra {
-  width: fit-content;
+#sizes, #extra {
+  height: 1.8em;
   display: flex;
-} */
+}
+
+#controlls, #buttons, #sizes, #extra {
+  gap: 0.2em;
+}
 
 #chat {
   display: flex;
@@ -130,6 +133,27 @@ main {
   height: 100%;
 }
 
+
+/* MEDIA QUERIES */
+
+/* mobile landscape */
+@media
+  screen and (orientation:landscape) and (min-width: 35.5em),
+  screen and (min-width: 48em) {
+    
+}
+
+/* tablet */
+@media screen and (min-width: 48em) {
+/*   main {
+    flex-direction: row;
+  } */
+}
+
+/* PC */
+@media screen and (min-width: 80em) {
+
+}
 
 /* 
 main {

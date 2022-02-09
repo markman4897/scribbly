@@ -21,9 +21,9 @@
 </head>
 
 <body>
-  <header class="center-text">
+  <header>
     <a title="home" href="index.html" class="link"><i class="fas fa-home fa-2x to-left"></i></a>
-    <h1>Scribbly</h1>
+    <h1 class="flex-extend center-content">Scribbly</h1>
     <audio id="radio" src="http://relay.publicdomainradio.org:80/jazz_swing.aac">
       radio not supported
     </audio>
@@ -56,8 +56,8 @@
             <div class="clr" data-clr="#ffffff"></div>
           </div>
         </div>
-        <div id="buttons" class="">
-          <div id="sizes" class="">
+        <div id="buttons" class="flex-extend">
+          <div id="sizes">
             <div class="size button button-tertiary">
               <div class="size-ball" data-size="5"></div>
             </div>
@@ -71,10 +71,10 @@
               <div class="size-ball" data-size="25"></div>
             </div>
           </div>
-          <div id="extra" class="">
-            <button id="clear" class="button button-tertiary"><span class="big">clear</span><span
+          <div id="extra">
+            <button id="clear" class="button button-tertiary" onclick="fix_me()"><span class="big">clear</span><span
                 class="small">c</span></button>
-            <button id="save" class="button button-tertiary"><span class="big">save</span><span
+            <button id="save" class="button button-tertiary" onclick="save()"><span class="big">save</span><span
                 class="small">s</span></button>
           </div>
         </div>

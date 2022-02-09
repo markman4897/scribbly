@@ -1,15 +1,3 @@
-/* // Initialisation
-function startup() {
-  let el = document.getElementById("canvas");
-  el.addEventListener("touchstart", handleStart, false);
-  el.addEventListener("touchend", handleEnd, false);
-  el.addEventListener("touchcancel", handleCancel, false);
-  el.addEventListener("touchmove", handleMove, false);
-  ...
-}
-
-document.addEventListener("DOMContentLoaded", startup); */
-
 const canvas = document.getElementById("canvas")
 const ctx = canvas.getContext("2d")
 
@@ -30,11 +18,19 @@ let canvas_size_ratio = null
 
 // INITIALISING
 calculate_viewport_size_dependant_things()
-clear_canvas()
+clear()
 
 
 // SETTING VARIABLES DEPENDANT ON VIEWPORT SIZE
 function calculate_viewport_size_dependant_things() {
+  // this is a HACK! rewrite in css if possible or upgrade this code so it doesn't push down chat
+  // (replace canvas container with something else that still limits canvas width)
+  let main_style = getComputedStyle(document.getElementsByTagName('main')[0])
+  let footer = document.getElementsByTagName('footer')[0].getBoundingClientRect()
+  let controlls = document.getElementById('controlls').getBoundingClientRect()
+  let max_canvas_size = footer.top - controlls.bottom - main_style.marginBottom.replace("px", "")
+  document.documentElement.style.setProperty('--max-canvas-height', max_canvas_size + 'px');
+
   canvas_size_ratio = canvas.scrollHeight / canvas.height
 
   let balls = document.querySelectorAll(".size-ball")
@@ -71,23 +67,24 @@ sizs.forEach(siz => {
 })
 
 // Clearing canvas
-let clearBtn = document.getElementById("clear")
-clearBtn.addEventListener("click", clear_canvas)
+function fix_me() {
+  console.log("figure out why this is needed! (game.js)")
+  clear()
+}
 
-function clear_canvas() {
+function clear() {
   ctx.fillStyle = canvas_color
   ctx.fillRect(0, 0, canvas.width, canvas.height)
 }
 
 // Saving drawing as image
-let saveBtn = document.getElementById("save")
-saveBtn.addEventListener("click", () => {
+function save() {
   let data = canvas.toDataURL("imag/png")
   let a = document.createElement("a")
   a.href = data
   a.download = "scribbly.png"
   a.click()
-})
+}
 
 
 // DRAWING ON CANVAS
