@@ -147,19 +147,16 @@ scrollbar,
 scrollbar-track,
 ::-webkit-scrollbar-track {
   background: var(--tertiary);
-  border-radius: 0.5em;
 }
 
 scrollbar-corner,
 ::-webkit-scrollbar-corner {
   background: var(--tertiary);
-  border-radius: 0.5em;
 }
  
 scrollbar-thumb,
 ::-webkit-scrollbar-thumb {
   background: var(--primary);
-  border-radius: 0.5em;
 }
 
 scrollbar-thumb:hover,
@@ -302,6 +299,21 @@ scrollbar-thumb:hover,
 
   footer {
     border-radius: 0.5em 0.5em 0 0;
+  }
+
+  scrollbar-track,
+  ::-webkit-scrollbar-track {
+    border-radius: 0.5em;
+  }
+  
+  scrollbar-corner,
+  ::-webkit-scrollbar-corner {
+    border-radius: 0.5em;
+  }
+   
+  scrollbar-thumb,
+  ::-webkit-scrollbar-thumb {
+    border-radius: 0.5em;
   }
 }
 
