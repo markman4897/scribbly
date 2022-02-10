@@ -59,12 +59,16 @@ clrs.forEach(clr => {
 
 // Buttons for changing brush size
 let sizs = document.querySelectorAll(".size")
-sizs = Array.from(sizs)
 sizs.forEach(siz => {
   siz.addEventListener("click", () => {
     line_width = siz.firstElementChild.dataset.size
   })
 })
+
+// Eraser
+function set_eraser() {
+  color = canvas_color
+}
 
 // Clearing canvas
 function fix_me() {
