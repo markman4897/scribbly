@@ -8,7 +8,8 @@
   --tertiary: #a07fc9;
   --accent: #744c5c;
   --background: #3c3c4c;
-  --shadow: rgba(0,0,0,0.3)
+  --shadow: rgba(0,0,0,0.3);
+  --shade: rgba(0,0,0,0.8);
 }
 
 * {
@@ -293,7 +294,7 @@ scrollbar-thumb:hover,
   }
 
   main {
-    margin: 1em 1em;
+    margin: 1em;
     border-radius: 0.5em;
   }
 
