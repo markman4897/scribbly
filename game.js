@@ -17,8 +17,11 @@ let ongoingTouches = []
 let canvas_size_ratio = null
 
 // INITIALISING
-calculate_viewport_size_dependant_things()
-clear()
+// window.addEventListener('DOMContentLoaded', (e) => {  // fires when dom is loaded but before CSS etc is loaded
+window.onload = (e) => { // fires when everything is loaded
+  calculate_viewport_size_dependant_things()
+  clear()
+};
 
 
 // SETTING VARIABLES DEPENDANT ON VIEWPORT SIZE
@@ -40,22 +43,39 @@ function calculate_viewport_size_dependant_things() {
   })
 }
 
-window.addEventListener("resize", () => {
-  calculate_viewport_size_dependant_things()
-})
+window.addEventListener("resize", calculate_viewport_size_dependant_things)
+window.addEventListener("orientationchange", calculate_viewport_size_dependant_things)
 
 
 // MAPPING BUTTONS
+
+function set_color(clr) {
+  color = clr
+  color_size_balls(clr)
+}
 
 // Buttons for changing colour
 let clrs = document.querySelectorAll(".clr")
 clrs = Array.from(clrs)
 clrs.forEach(clr => {
   clr.addEventListener("click", () => {
-    color = clr.dataset.clr
+    set_color(clr.dataset.clr)
   })
   clr.style.backgroundColor = clr.dataset.clr
 })
+
+// Eraser
+function set_eraser() {
+  set_color(canvas_color)
+}
+
+// Setting size balls to selected colour
+let size_balls = document.querySelectorAll(".size-ball")
+function color_size_balls(color) {
+  size_balls.forEach(ball => {
+    ball.style.backgroundColor = color
+  })
+}
 
 // Buttons for changing brush size
 let sizs = document.querySelectorAll(".size")
@@ -64,11 +84,6 @@ sizs.forEach(siz => {
     line_width = siz.firstElementChild.dataset.size
   })
 })
-
-// Eraser
-function set_eraser() {
-  color = canvas_color
-}
 
 // Clearing canvas
 function fix_me() {

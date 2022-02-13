@@ -19,7 +19,7 @@
 html, button, input, select, textarea {
   font-family: 'Oswald', sans-serif;
   color: var(--secondary);
-  font-size: 22px;
+  font-size: 1.357em;
 }
 
 

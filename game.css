@@ -150,11 +150,63 @@ main {
 
 /* mobile landscape */
 @media
-  screen and (orientation:landscape) and (max-width: 49em) {
+  screen and (orientation: landscape) and (max-width: 52em) {
     .orientation-message {
       display: flex;
     }
 }
+
+@media screen and (orientation: landscape) and (min-width: 48em) and (max-width: 80em) {
+  .button > .big {
+    display: none;
+  }
+
+  .button > .small {
+    display: block;
+  }
+  a.button > .small {
+    display: inline;
+  }
+
+  #container, #colors {
+    flex-direction: row;
+  }
+
+  #controlls, .colors-row, #buttons, #sizes, #extra {
+    flex-direction: column;
+  }
+  
+  #controlls {
+    background-color: var(--accent);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width:fit-content;
+  }
+  
+  .colors {
+    width: 100%;
+  }
+  
+  .clr{
+    height: 1em;
+    width: 1em;
+  }
+  
+  #buttons {
+    padding: 0 0.1em;
+  }
+  
+  .size {
+    width: 100%;
+  }
+  
+  #sizes, #extra {
+    height: inherit;
+    width: 1.8em;
+  }
+}
+
 
 /* tablet */
 @media screen and (min-width: 48em) {
