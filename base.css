@@ -139,28 +139,28 @@ li::before {
   font-weight: bold;
 }
 
-scrollbar,
+* {
+  scrollbar-width: auto;
+  scrollbar-color: var(--primary) var(--tertiary);
+}
+
 ::-webkit-scrollbar {
   height: 0.8em;
   width: 0.8em;
 }
 
-scrollbar-track,
 ::-webkit-scrollbar-track {
   background: var(--tertiary);
 }
 
-scrollbar-corner,
 ::-webkit-scrollbar-corner {
   background: var(--tertiary);
 }
  
-scrollbar-thumb,
 ::-webkit-scrollbar-thumb {
   background: var(--primary);
 }
 
-scrollbar-thumb:hover,
 ::-webkit-scrollbar-thumb:hover {
   background: var(--secondary);
 }
@@ -302,17 +302,14 @@ scrollbar-thumb:hover,
     border-radius: 0.5em 0.5em 0 0;
   }
 
-  scrollbar-track,
   ::-webkit-scrollbar-track {
     border-radius: 0.5em;
   }
-  
-  scrollbar-corner,
+
   ::-webkit-scrollbar-corner {
     border-radius: 0.5em;
   }
-   
-  scrollbar-thumb,
+
   ::-webkit-scrollbar-thumb {
     border-radius: 0.5em;
   }

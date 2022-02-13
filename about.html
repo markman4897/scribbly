@@ -148,18 +148,36 @@
         wall of text).</p>
       <h3>CSS corrections - final edition</h3>
       <p>about mydevice.io and landscape media query and learning about aspect ration media queries</p>
-      <p>custom scrollbars are cool, but still not widely supported (and I still don't like adding existing libraries
-        for some reason, I never learn)</p>
+      <p>Alright, let's go back to square C, meaning of course the CSS. As expected we're not nearly done with the style
+        part of this website and things continue not to work in one way or another. The biggest problem of all still
+        being how the drawing app still doesn't look good on mobile or tablet. The biggest problem is the landscape
+        orientation where we want the canvas area to take up as much of the screen as possible while still keeping the
+        4:3 aspect ratio.</p>
+      <p>But let's examine the problem from a distance. Why am I having such a big problem styling it the way I want it
+        to look. I mean PC is in landscape too, why is it so much trouble on smaller devices? Well the thing is that the
+        phone is much smaller than a monitor and that your browsers address bar etc takes much of the vertical space. So
+        we really want to maximise the height of the canvas element as much as possible because after all, you can't
+        really draw anything if the canvas is only about two thumbs high.</p>
+      <p>We can't really keep the same layout of the elements as in portrait orientation, mainly because the tools area
+        take up much of the precious vertical space, so the only way is to position them on the side, where we have
+        extra space since phones are pretty long these days.</p>
       <h3>new game features</h3>
-      <p>adding eraser etc</p>
+      <p>So while I was watching people use the drawing page, I noticed they were always searching for something that
+        wasn't there. Now the specific things they were searching for were different brushes, undo button and even a
+        load button so they could continue from where they left. But there was always one thing that everyone was
+        missing. An eraser.</p>
+      <p>And from all of the requests, this one was the easiest to implement so there was really no excuse not to.</p>
+      <p>Another thing I noticed was that while choosing colours, people forgot which colour they selected or didn't
+        know if they hit or missed the button. So I added a function that colours all the circles of brush size
+        selection to the currently selected colour.</p>
       <h3>one page is not like the others</h3>
       <p>game page: realising that I can't cater to literally any screen size effectively... yet!</p>
-      <p>noticing that width
-        100% doesn't always contain its child and aspect ratio gets broken etc</p>
+      <p>noticing that width 100% doesn't always contain its child and aspect ratio gets broken etc (less restrictive of
+        the two loses when you compare aspect ratio and max-* or min-*, there's an article about this somewhere )</p>
       <h3>but this works on my device</h3>
       <p>realising how many different possible device sizes and aspect ratios are there (and how they can break
         everything)</p>
-      <p>why I added orientation message on game page</p>
+      <p>why I added orientation message on game page aka, i just cant cater for all scenarios nicely man...</p>
       <h3>calm before the storm</h3>
       <p>everything seems to work, this should be it, right?</p>
       <p>okay, time to submit the assignment (late -.-)</p>
@@ -171,6 +189,9 @@
       <h3>I vow to use CSS frameworks from now on</h3>
       <p>really... no joke this time... i know i said that after the last 50 projects but this time its different, i
         swear!</p>
+      <h3>okay, one last time</h3>
+      <p>readjusting css media query breakpoints</p>
+      <p>i just can't make game page play nicely with both orientations on small devices aka phones...</p>
       <h3>forgetting to finish this</h3>
       <p>I can already see myself panicking about how I forgot to finish this <i>great wall of text</i> after submitting
         the project. But that's just how life is from time to time I guess and as they say "it's no use crying over
@@ -202,6 +223,9 @@
       <a title="css-tricks article" href="https://css-tricks.com/auto-sizing-columns-css-grid-auto-fill-vs-auto-fit/"
         class="link">
         article about auto-fit vs auto-fill
+      </a>
+      <a href="https://www.freecodecamp.org/news/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862" class="link">
+        article about breakpoints
       </a>
       <hr>
       <a title="Tiny Png website" href="https://tinypng.com/" class="link">
