@@ -150,13 +150,13 @@ main {
 
 /* mobile landscape */
 @media
-  screen and (orientation: landscape) and (max-width: 52em) {
+  screen and (orientation: landscape) and (min-aspect-ratio: 16/9) and (max-width: 80em) {
     .orientation-message {
       display: flex;
     }
 }
 
-@media screen and (orientation: landscape) and (min-width: 48em) and (max-width: 80em) {
+@media screen and (orientation: landscape) and (max-width: 48em) {
   .button > .big {
     display: none;
   }
@@ -177,10 +177,7 @@ main {
   }
   
   #controlls {
-    background-color: var(--accent);
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
   }
   
   #colors {
@@ -188,11 +185,6 @@ main {
   }
 
   .colors-row {
-    width: 1em;
-  }
-  
-  .clr{
-    height: 1em;
     width: 1em;
   }
   
