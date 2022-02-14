@@ -150,13 +150,51 @@ main {
 
 /* mobile landscape */
 @media
-  screen and (orientation: landscape) and (min-aspect-ratio: 16/9) and (max-width: 80em) {
+  screen and (orientation: landscape) and (min-aspect-ratio: 16/9) and (max-width: 48em) {
     .orientation-message {
       display: flex;
     }
 }
 
-@media screen and (orientation: landscape) and (max-width: 48em) {
+
+/* tablet */
+@media screen and (min-width: 48em) {
+  main {
+    flex-direction: row;
+  }
+}
+
+@media screen and (min-width: 48em) and (max-width: 80em) {
+  h2 {
+    margin: 0.2em;
+  }
+
+  main {
+    margin: 0.4em 0;
+    border-radius: 0;
+  }
+
+  #container {
+    justify-content: center;
+  }
+
+  #controlls {
+    border-radius: 0 0.5em 0 0;
+  }
+
+  #canvas {
+    border-radius: 0 0 0.5rem 0;
+  }
+
+  #chat {
+    margin-right: 0;
+    border-radius: 0.5em 0 0 0.5em;
+    border-right: 0;
+  }
+}
+
+/* landscape smaller than computer */
+@media screen and (orientation: landscape) and (max-width: 80em) {
   .button > .big {
     display: none;
   }
@@ -210,43 +248,7 @@ main {
   #canvas {
     max-height: 100%;
     aspect-ratio: 4/3;
-  }
-}
-
-
-/* tablet */
-@media screen and (min-width: 48em) {
-  main {
-    flex-direction: row;
-  }
-}
-
-@media screen and (min-width: 48em) and (max-width: 80em) {
-  h2 {
-    margin: 0.2em;
-  }
-
-  main {
-    margin: 0.4em 0;
-    border-radius: 0;
-  }
-
-  #container {
-    justify-content: center;
-  }
-
-  #controlls {
-    border-radius: 0;
-  }
-
-  #canvas {
-    border-radius: 0 0.5em 0.5rem 0;
-  }
-
-  #chat {
-    margin-right: 0;
-    border-radius: 0.5em 0 0 0.5em;
-    border-right: 0;
+    border-radius: 0 0.5em 0.5em 0;
   }
 }
 
