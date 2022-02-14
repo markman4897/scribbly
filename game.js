@@ -6,7 +6,7 @@ const chat_text = document.getElementById("chat-text")
 
 let line_width = 15
 let color = "#000"
-let canvas_color = window.getComputedStyle(canvas).backgroundColor
+let canvas_color = '#000'
 
 let prevMouse = {}
 let prevTouch = {}
@@ -20,6 +20,7 @@ let canvas_size_ratio = null
 // window.addEventListener('DOMContentLoaded', (e) => {  // fires when dom is loaded but before CSS etc is loaded
 window.onload = (e) => { // fires when everything is loaded
   calculate_viewport_size_dependant_things()
+  canvas_color = window.getComputedStyle(canvas).backgroundColor
   clear()
 };
 

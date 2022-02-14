@@ -150,7 +150,7 @@ main {
 
 /* mobile landscape */
 @media
-  screen and (orientation: landscape) and (min-aspect-ratio: 16/9) and (max-width: 48em) {
+  screen and (orientation: landscape) and (max-width: 48em) {
     .orientation-message {
       display: flex;
     }
