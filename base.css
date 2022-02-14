@@ -19,7 +19,7 @@
 html, button, input, select, textarea {
   font-family: 'Oswald', sans-serif;
   color: var(--secondary);
-  font-size: 1.357em;
+  font-size: 1.375em;
 }
 
 
@@ -268,6 +268,8 @@ li::before {
 
 
 /* MEDIA QUERIES */
+
+/* mobile portrait <- 600px = 37.5em -> tablet portrait (mobile landscape) <-  900px = 56.25em -> tablet landscape <- 1200px = 75em -> desktop <- 1800px = 112.5em -> big desktop */
 
 /* regular css for mobile and tablet portrait */
 

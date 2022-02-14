@@ -181,11 +181,14 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width:fit-content;
   }
   
-  .colors {
-    width: 100%;
+  #colors {
+    display: flex;
+  }
+
+  .colors-row {
+    width: 1em;
   }
   
   .clr{
@@ -204,6 +207,17 @@ main {
   #sizes, #extra {
     height: inherit;
     width: 1.8em;
+  }
+
+  #canvas-container {
+    max-width: unset;
+    height: 100%;
+    aspect-ratio: 4/3;
+  }
+
+  #canvas {
+    max-height: 100%;
+    aspect-ratio: 4/3;
   }
 }
 
@@ -230,11 +244,11 @@ main {
   }
 
   #controlls {
-    border-radius: 0 0.5em 0 0;
+    border-radius: 0;
   }
 
   #canvas {
-    border-radius: 0 0 0.5rem 0;
+    border-radius: 0 0.5em 0.5rem 0;
   }
 
   #chat {
@@ -246,5 +260,7 @@ main {
 
 /* PC */
 @media screen and (min-width: 80em) {
-  /* placeholder */
+  #controlls {
+    border-radius: 0.5em 0.5em 0 0;
+  }
 }
