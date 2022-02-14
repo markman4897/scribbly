@@ -13,20 +13,20 @@
 
 /* landscape mobile or tablet and bigger */
 @media 
-  screen and (orientation:landscape) and (min-width: 35.5em),
-  screen and (min-width: 48em) {
+  screen and (orientation:landscape) and (min-width: 37.5em),/* mobile-landscape-max */
+  screen and (min-width: 56.25em) {/* tablet-landscape-min */
     .gallery {
       grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
     }
 }
 
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 56.25em) {/* tablet-landscape-min */
   .gallery {
     grid-template-columns: repeat(auto-fit, minmax(14em, 1fr));
   }
 }
 
-@media screen and (min-width: 80em) {
+@media screen and (min-width: 75em) {/* desktop-min */
   .gallery {
     grid-template-columns: repeat(auto-fit, minmax(16em, 1fr));
   }

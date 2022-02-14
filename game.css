@@ -150,7 +150,7 @@ main {
 
 /* mobile landscape */
 @media
-  screen and (orientation: landscape) and (max-width: 48em) {
+  screen and (orientation: landscape) and (max-width: 56.25em) {/* mobile-landscape-max */
     .orientation-message {
       display: flex;
     }
@@ -158,13 +158,13 @@ main {
 
 
 /* tablet */
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 56.25em) {/* tablet-portrait-min */
   main {
     flex-direction: row;
   }
 }
 
-@media screen and (min-width: 48em) and (max-width: 80em) {
+@media screen and (min-width: 56.25em) and (max-width: 75em) {/* tablet-landscape */
   h2 {
     margin: 0.2em;
   }
@@ -194,7 +194,7 @@ main {
 }
 
 /* landscape smaller than computer */
-@media screen and (orientation: landscape) and (max-width: 80em) {
+@media screen and (orientation: landscape) and (max-width: 75em) {/* tablet-landscape-max */
   .button > .big {
     display: none;
   }
@@ -253,7 +253,7 @@ main {
 }
 
 /* PC */
-@media screen and (min-width: 80em) {
+@media screen and (min-width: 75em) {/* desktop-min */
   #controlls {
     border-radius: 0.5em 0.5em 0 0;
   }

@@ -8,6 +8,7 @@
   --tertiary: #a07fc9;
   --accent: #744c5c;
   --background: #3c3c4c;
+
   --shadow: rgba(0,0,0,0.3);
   --shade: rgba(0,0,0,0.8);
 }
@@ -269,14 +270,20 @@ li::before {
 
 /* MEDIA QUERIES */
 
-/* mobile portrait <- 600px = 37.5em -> tablet portrait (mobile landscape) <-  900px = 56.25em -> tablet landscape <- 1200px = 75em -> desktop <- 1800px = 112.5em -> big desktop */
-
-/* regular css for mobile and tablet portrait */
+/* mobile portrait <- 600px = 37.5em -> tablet portrait (mobile landscape) <-  900px = 56.25em -> tablet landscape <- 1200px = 75em -> desktop <- 1800px = 112.5em -> big desktop
+  mobile-portrait-max = 37.5em
+  mobile-landscape-min = 37.5em
+  mobile-landscape-max = 56.25em
+  tablet-portrait-min = 37.5em
+  tablet-portrait-max = 56.25em
+  tablet-landscape-min = 56.25em
+  tablet-landscape-max = 75em
+  desktop-min = 75em
+  desktop-max = 112.5em
+  desktop-big-min = 112.5em */
 
 /* mobile landscape */
-@media
-  screen and (orientation:landscape) and (min-width: 35.5em),
-  screen and (min-width: 48em) {
+@media screen and (min-width: 56.25em) {/* tablet-landscape-min */
   .button > .small {
     display: none;
   }
@@ -290,7 +297,7 @@ li::before {
 }
 
 /* tablet */
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 56.25em) {/* tablet-landscape-min */
   header {
     border-radius: 0 0 0.5em 0.5em;
   }
@@ -318,7 +325,7 @@ li::before {
 }
 
 /* PC */
-@media screen and (min-width: 80em) {
+@media screen and (min-width: 75em) {/* desktop-min */
   body {
     top: 50vh;
     left: 50vw;
@@ -345,6 +352,7 @@ li::before {
 
 /* TOUCHSCREEN SPECIFIC MEDIA QUERIES */
 
+/* don't transform buttons on touch devices, it looks weird */
 @media (pointer:coarse) {
   .button:hover {
     transform: none;
