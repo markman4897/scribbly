@@ -17,13 +17,16 @@
   box-sizing: border-box;
 }
 
+/* necessary for some reason to overwrite user agent in chrome */
+button {
+  color: var(--secondary);
+}
+
 html {
   font-family: "Oswald", sans-serif;
   color: var(--secondary);
   font-size: 1.375em;
-}
 
-html {
   background: var(--background);
   position: fixed;
   top: 0;
