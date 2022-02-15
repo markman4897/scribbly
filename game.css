@@ -196,6 +196,13 @@ a.button {
     border-radius: 0.5em 0 0 0.5em;
     border-right: 0;
   }
+
+  /* HACK: I can't figure out how to automatically expand controlls width when its children wrap */
+  @media screen and (max-height: 38.5em) {
+    #controlls {
+      width: 4.2em;
+    }
+  }
 }
 
 /* landscape smaller than computer */
