@@ -144,6 +144,14 @@ li::before {
   font-weight: bold;
 }
 
+pre,
+code {
+  background: var(--shadow);
+  padding: 0.1em;
+  font-size: 0.8em;
+  border-radius: 0.2em;
+}
+
 * {
   scrollbar-width: auto;
   scrollbar-color: var(--primary) var(--tertiary);
