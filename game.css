@@ -198,7 +198,7 @@ a.button {
   }
 
   /* HACK: I can't figure out how to automatically expand controlls width when its children wrap */
-  @media screen and (max-height: 38.5em) {
+  @media screen and (max-height: 35.1875em) {
     #controlls {
       width: 4.2em;
     }
