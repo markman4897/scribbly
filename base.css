@@ -17,11 +17,7 @@
   box-sizing: border-box;
 }
 
-html,
-button,
-input,
-select,
-textarea {
+html {
   font-family: "Oswald", sans-serif;
   color: var(--secondary);
   font-size: 1.375em;
