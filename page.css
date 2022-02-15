@@ -5,7 +5,8 @@ main {
   gap: 1em;
 }
 
-.main-free, .main-bordered {
+.main-free,
+.main-bordered {
   margin: auto 0;
 }
 
@@ -29,20 +30,20 @@ main {
 /* regular css for mobile and tablet portrait */
 
 /* landscape */
-@media 
-  screen and (orientation:landscape) and (min-width: 37.5em),/* mobile-landscape-max */
-  screen and (min-width: 56.25em) {/* tablet-landscape-min */
-    main {
-      flex-direction: row;
-    }
-    
-    .main-free {
-      flex: 2;
-      padding-left: calc(100% * 0.1);
-      padding-right: calc(100% * 0.1);
-    }
+@media screen and (orientation: landscape) and (min-width: 37.5em),
+  /* mobile-landscape-max */ screen and (min-width: 56.25em) {
+  /* tablet-landscape-min */
+  main {
+    flex-direction: row;
+  }
 
-    .main-bordered {
-      flex: 1;
-    }
+  .main-free {
+    flex: 2;
+    padding-left: calc(100% * 0.1);
+    padding-right: calc(100% * 0.1);
+  }
+
+  .main-bordered {
+    flex: 1;
+  }
 }

@@ -10,20 +10,19 @@
   margin: 1em;
 }
 
-
 /* MEDIA QUERIES */
 
 /* regular css for mobile and tablet portrait */
 
 /* landscape mobile or tablet and bigger */
-@media 
-  screen and (orientation:landscape) and (min-width: 37.5em),/* mobile-landscape-max */
-  screen and (min-width: 56.25em) {/* tablet-landscape-min */
-    .main-bordered {
-      height: fit-content;
-    }
+@media screen and (orientation: landscape) and (min-width: 37.5em),
+  /* mobile-landscape-max */ screen and (min-width: 56.25em) {
+  /* tablet-landscape-min */
+  .main-bordered {
+    height: fit-content;
+  }
 
-    .main-bordered-images {
-      grid-template-columns: 1fr 1fr;
-    }
+  .main-bordered-images {
+    grid-template-columns: 1fr 1fr;
+  }
 }

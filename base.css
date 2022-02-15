@@ -1,28 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Oswald:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Oswald:wght@400;700&display=swap");
 
 /* BASE */
 
-:root{
+:root {
   --primary: #dc5cb4;
   --secondary: #ecdcbc;
   --tertiary: #a07fc9;
   --accent: #744c5c;
   --background: #3c3c4c;
 
-  --shadow: rgba(0,0,0,0.3);
-  --shade: rgba(0,0,0,0.8);
+  --shadow: rgba(0, 0, 0, 0.3);
+  --shade: rgba(0, 0, 0, 0.8);
 }
 
 * {
   box-sizing: border-box;
 }
 
-html, button, input, select, textarea {
-  font-family: 'Oswald', sans-serif;
+html,
+button,
+input,
+select,
+textarea {
+  font-family: "Oswald", sans-serif;
   color: var(--secondary);
   font-size: 1.375em;
 }
-
 
 html {
   background: var(--background);
@@ -45,7 +48,7 @@ body {
 
 header {
   display: flex;
-  
+
   background: var(--primary);
   padding: 0.2em;
 }
@@ -72,14 +75,12 @@ header > .link:hover {
   color: var(--background);
 }
 
-
 /* MAIN AREA */
 
 main {
   background: var(--accent);
   overflow: auto;
 }
-
 
 /* FOOTER AREA */
 
@@ -97,8 +98,6 @@ footer {
   transition: opacity 1.2s ease-in-out;
 }
 
-
-
 footer .link {
   color: var(--background);
   text-decoration-color: var(--background);
@@ -108,19 +107,25 @@ footer .link:hover {
   color: var(--secondary);
 }
 
-
 /* BASIC ELEMENTS */
 
 h1 {
   margin: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: bold;
 }
 
-h1, h2, h3 {
-  font-family: 'Lobster', cursive;
+h1,
+h2,
+h3 {
+  font-family: "Lobster", cursive;
   text-transform: capitalize;
   text-shadow: 0.1rem 0.1rem 0.1rem var(--shadow);
 }
@@ -157,7 +162,7 @@ li::before {
 ::-webkit-scrollbar-corner {
   background: var(--tertiary);
 }
- 
+
 ::-webkit-scrollbar-thumb {
   background: var(--primary);
 }
@@ -165,7 +170,6 @@ li::before {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--secondary);
 }
-
 
 /* BUILDING BLOCKS */
 
@@ -211,7 +215,9 @@ li::before {
   transition: color 0.2s;
 }
 
-.link, .link:visited, .link:hover {
+.link,
+.link:visited,
+.link:hover {
   color: unset;
 }
 
@@ -221,7 +227,6 @@ li::before {
   display: block;
   border-radius: 0.5em;
 }
-
 
 /* HELPERS */
 
@@ -267,7 +272,6 @@ li::before {
   opacity: 0;
 }
 
-
 /* MEDIA QUERIES */
 
 /* mobile portrait <- 600px = 37.5em -> tablet portrait (mobile landscape) <-  900px = 56.25em -> tablet landscape <- 1200px = 75em -> desktop <- 1800px = 112.5em -> big desktop
@@ -283,7 +287,8 @@ li::before {
   desktop-big-min = 112.5em */
 
 /* mobile landscape */
-@media screen and (min-width: 56.25em) {/* tablet-landscape-min */
+@media screen and (min-width: 56.25em) {
+  /* tablet-landscape-min */
   .button > .small {
     display: none;
   }
@@ -297,7 +302,8 @@ li::before {
 }
 
 /* tablet */
-@media screen and (min-width: 56.25em) {/* tablet-landscape-min */
+@media screen and (min-width: 56.25em) {
+  /* tablet-landscape-min */
   header {
     border-radius: 0 0 0.5em 0.5em;
   }
@@ -325,7 +331,8 @@ li::before {
 }
 
 /* PC */
-@media screen and (min-width: 75em) {/* desktop-min */
+@media screen and (min-width: 75em) {
+  /* desktop-min */
   body {
     top: 50vh;
     left: 50vw;
@@ -351,11 +358,10 @@ li::before {
   }
 }
 
-
 /* TOUCHSCREEN SPECIFIC MEDIA QUERIES */
 
 /* don't transform buttons on touch devices, it looks weird */
-@media (pointer:coarse) {
+@media (pointer: coarse) {
   .button:hover {
     transform: none;
   }

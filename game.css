@@ -55,7 +55,7 @@ main {
   flex-direction: row;
 }
 
-.clr{
+.clr {
   height: 1em;
   aspect-ratio: 1;
 }
@@ -86,12 +86,16 @@ main {
   aspect-ratio: 1;
 }
 
-#sizes, #extra {
+#sizes,
+#extra {
   height: 1.8em;
   display: flex;
 }
 
-#controlls, #buttons, #sizes, #extra {
+#controlls,
+#buttons,
+#sizes,
+#extra {
   gap: 0.2em;
 }
 
@@ -140,31 +144,32 @@ main {
   padding: 0 0.2rem;
 }
 
-.button, a.button {
+.button,
+a.button {
   padding: 0 0.5em;
   height: 100%;
 }
 
-
 /* MEDIA QUERIES */
 
 /* mobile landscape */
-@media
-  screen and (orientation: landscape) and (max-width: 56.25em) {/* mobile-landscape-max */
-    .orientation-message {
-      display: flex;
-    }
+@media screen and (orientation: landscape) and (max-width: 56.25em) {
+  /* mobile-landscape-max */
+  .orientation-message {
+    display: flex;
+  }
 }
 
-
 /* tablet */
-@media screen and (min-width: 56.25em) {/* tablet-portrait-min */
+@media screen and (min-width: 56.25em) {
+  /* tablet-portrait-min */
   main {
     flex-direction: row;
   }
 }
 
-@media screen and (min-width: 56.25em) and (max-width: 75em) {/* tablet-landscape */
+@media screen and (min-width: 56.25em) and (max-width: 75em) {
+  /* tablet-landscape */
   h2 {
     margin: 0.2em;
   }
@@ -194,7 +199,8 @@ main {
 }
 
 /* landscape smaller than computer */
-@media screen and (orientation: landscape) and (max-width: 75em) {/* tablet-landscape-max */
+@media screen and (orientation: landscape) and (max-width: 75em) {
+  /* tablet-landscape-max */
   .button > .big {
     display: none;
   }
@@ -206,18 +212,23 @@ main {
     display: inline;
   }
 
-  #container, #colors {
+  #container,
+  #colors {
     flex-direction: row;
   }
 
-  #controlls, .colors-row, #buttons, #sizes, #extra {
+  #controlls,
+  .colors-row,
+  #buttons,
+  #sizes,
+  #extra {
     flex-direction: column;
   }
-  
+
   #controlls {
     display: flex;
   }
-  
+
   #colors {
     display: flex;
   }
@@ -225,16 +236,17 @@ main {
   .colors-row {
     width: 1em;
   }
-  
+
   #buttons {
     padding: 0 0.1em;
   }
-  
+
   .size {
     width: 100%;
   }
-  
-  #sizes, #extra {
+
+  #sizes,
+  #extra {
     height: inherit;
     width: 1.8em;
   }
@@ -253,7 +265,8 @@ main {
 }
 
 /* PC */
-@media screen and (min-width: 75em) {/* desktop-min */
+@media screen and (min-width: 75em) {
+  /* desktop-min */
   #controlls {
     border-radius: 0.5em 0.5em 0 0;
   }

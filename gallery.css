@@ -6,27 +6,28 @@
   grid-template-columns: repeat(auto-fit, minmax(8em, 1fr));
 }
 
-
 /* MEDIA QUERIES */
 
 /* regular css for mobile and tablet portrait */
 
 /* landscape mobile or tablet and bigger */
-@media 
-  screen and (orientation:landscape) and (min-width: 37.5em),/* mobile-landscape-max */
-  screen and (min-width: 56.25em) {/* tablet-landscape-min */
-    .gallery {
-      grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
-    }
+@media screen and (orientation: landscape) and (min-width: 37.5em),
+  /* mobile-landscape-max */ screen and (min-width: 56.25em) {
+  /* tablet-landscape-min */
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
+  }
 }
 
-@media screen and (min-width: 56.25em) {/* tablet-landscape-min */
+@media screen and (min-width: 56.25em) {
+  /* tablet-landscape-min */
   .gallery {
     grid-template-columns: repeat(auto-fit, minmax(14em, 1fr));
   }
 }
 
-@media screen and (min-width: 75em) {/* desktop-min */
+@media screen and (min-width: 75em) {
+  /* desktop-min */
   .gallery {
     grid-template-columns: repeat(auto-fit, minmax(16em, 1fr));
   }
