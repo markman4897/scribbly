@@ -332,8 +332,8 @@ li::before {
     transform: translate(-50%, -50%);
     height: calc(100vh - 4em);
     width: calc(100vw - 12em);
-    max-height: 60em;
-    max-width: 80em;
+    max-height: 40em;
+    max-width: 70em;
   }
 
   header {
