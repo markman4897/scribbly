@@ -39,6 +39,8 @@ window.onload = (e) => { // fires when everything is loaded
   calculate_viewport_size_dependant_things()
   canvas_color = window.getComputedStyle(canvas).backgroundColor
   clear()
+
+  set_selected_tool('pen')
 };
 
 
@@ -89,9 +91,27 @@ clrs.forEach(clr => {
   clr.style.backgroundColor = clr.dataset.clr
 })
 
+// Set selected tool
+function set_selected_tool(tool_id) {
+  let tools = document.getElementById('tools').children
+
+  Array.from(tools).forEach(tool => {
+    if (tool.classList.contains('button-pressed')) tool.classList.remove('button-pressed')
+  });
+
+  document.getElementById(tool_id).classList.add('button-pressed')
+}
+
 // Pen
 function set_pen() {
   tool = Tool.pen
+  set_selected_tool('pen')
+}
+
+// Fill brush
+function set_fill() {
+  tool = Tool.fill
+  set_selected_tool('fill-brush')
 }
 
 // Eraser
@@ -103,11 +123,6 @@ function set_eraser() {
   } else {
     eraser_btn.classList.remove('button-pressed')
   }
-}
-
-// Fill brush
-function set_fill() {
-  tool = Tool.fill
 }
 
 // Setting size balls to selected colour

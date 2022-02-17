@@ -86,6 +86,7 @@ main {
   aspect-ratio: 1;
 }
 
+#tools,
 #sizes,
 #extra {
   height: 1.8em;
@@ -94,6 +95,7 @@ main {
 
 #controlls,
 #buttons,
+#tools,
 #sizes,
 #extra {
   gap: 0.2em;
@@ -226,6 +228,7 @@ main {
   #controlls,
   .colors-row,
   #buttons,
+  #tools,
   #sizes,
   #extra {
     flex-direction: column;
@@ -251,6 +254,7 @@ main {
     width: 100%;
   }
 
+  #tools,
   #sizes,
   #extra {
     height: inherit;
