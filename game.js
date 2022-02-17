@@ -25,6 +25,13 @@ window.onload = (e) => { // fires when everything is loaded
 };
 
 
+// DISABLING ACCIDENTAL UNLOAD
+window.addEventListener("beforeunload", (e) => {
+  e.preventDefault();
+  e.returnValue = "";
+})
+
+
 // SETTING VARIABLES DEPENDANT ON VIEWPORT SIZE
 function calculate_viewport_size_dependant_things() {
   // this is a HACK! rewrite in css if possible or upgrade this code so it doesn't push down chat
