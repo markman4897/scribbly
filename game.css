@@ -63,6 +63,7 @@ main {
 #buttons {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
   padding: 0.1em 0;
 }
