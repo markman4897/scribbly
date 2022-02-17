@@ -87,6 +87,7 @@ main {
 }
 
 #tools,
+#toggle-tools,
 #sizes,
 #extra {
   height: 1.8em;
@@ -96,6 +97,7 @@ main {
 #controlls,
 #buttons,
 #tools,
+#toggle-tools,
 #sizes,
 #extra {
   gap: 0.2em;
@@ -229,6 +231,7 @@ main {
   .colors-row,
   #buttons,
   #tools,
+  #toggle-tools,
   #sizes,
   #extra {
     flex-direction: column;
@@ -255,6 +258,7 @@ main {
   }
 
   #tools,
+  #toggle-tools,
   #sizes,
   #extra {
     height: inherit;
