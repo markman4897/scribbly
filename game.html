@@ -1,112 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/normalize.css/normalize.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    />
 
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/normalize.css/normalize.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="stylesheet" href="base.css" />
+    <script src="radio.js" defer></script>
+    <script src="random_footer_quote.js" defer></script>
 
-  <link rel="stylesheet" href="base.css">
-  <script src="radio.js" defer></script>
-  <script src="random_footer_quote.js" defer></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scribbly</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scribbly</title>
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="game.css" />
+    <script src="game.js" defer></script>
+    <!-- <base target="_blank"> -->
+  </head>
 
-  <link rel="stylesheet" href="game.css">
-  <script src="game.js" defer></script>
-  <!-- <base target="_blank"> -->
-</head>
-
-<body>
-  <header>
-    <a title="home" href="index.html" class="link"><i class="fas fa-home fa-2x to-left"></i></a>
-    <h1 class="flex-extend center-content">Scribbly</h1>
-    <audio id="radio" src="http://relay.publicdomainradio.org:80/jazz_swing.aac">
-      radio not supported
-    </audio>
-    <button class="to-right button button-transparent" onclick="radioToggle()">
-      <i id="radio-button-icon" class="fas fa-play-circle fa-2x"></i>
-    </button>
-  </header>
-  <main class="flex-extend">
-    <div class="orientation-message center-text center-content-vertical">Please rotate your device.</div>
-    <div id="container">
-      <div id="controlls">
-        <div id="colors">
-          <div class="colors-row">
-            <div class="clr" data-clr="#9b9c82"></div>
-            <div class="clr" data-clr="#f7b69e"></div>
-            <div class="clr" data-clr="#f48cb6"></div>
-            <div class="clr" data-clr="#c92464"></div>
-            <div class="clr" data-clr="#6a3771"></div>
-            <div class="clr" data-clr="#cb4d68"></div>
-            <div class="clr" data-clr="#f99252"></div>
-            <div class="clr" data-clr="#f7e476"></div>
+  <body>
+    <header>
+      <a title="home" href="index.html" class="link"
+        ><i class="fas fa-home fa-2x to-left"></i
+      ></a>
+      <h1 class="flex-extend center-content">Scribbly</h1>
+      <audio
+        id="radio"
+        src="http://relay.publicdomainradio.org:80/jazz_swing.aac"
+      >
+        radio not supported
+      </audio>
+      <button
+        class="to-right button button-transparent"
+        onclick="radioToggle()"
+      >
+        <i id="radio-button-icon" class="fas fa-play-circle fa-2x"></i>
+      </button>
+    </header>
+    <main class="flex-extend">
+      <div class="orientation-message center-text center-content-vertical">
+        Please rotate your device.
+      </div>
+      <div id="container">
+        <div id="controlls">
+          <div id="colors">
+            <div class="colors-row">
+              <div class="clr" data-clr="#9b9c82"></div>
+              <div class="clr" data-clr="#f7b69e"></div>
+              <div class="clr" data-clr="#f48cb6"></div>
+              <div class="clr" data-clr="#c92464"></div>
+              <div class="clr" data-clr="#6a3771"></div>
+              <div class="clr" data-clr="#cb4d68"></div>
+              <div class="clr" data-clr="#f99252"></div>
+              <div class="clr" data-clr="#f7e476"></div>
+            </div>
+            <div class="colors-row">
+              <div class="clr" data-clr="#a1e55a"></div>
+              <div class="clr" data-clr="#5bb361"></div>
+              <div class="clr" data-clr="#1e8875"></div>
+              <div class="clr" data-clr="#393457"></div>
+              <div class="clr" data-clr="#606c81"></div>
+              <div class="clr" data-clr="#11adc1"></div>
+              <div class="clr" data-clr="#6df7c1"></div>
+              <div class="clr" data-clr="#ffffff"></div>
+            </div>
           </div>
-          <div class="colors-row">
-            <div class="clr" data-clr="#a1e55a"></div>
-            <div class="clr" data-clr="#5bb361"></div>
-            <div class="clr" data-clr="#1e8875"></div>
-            <div class="clr" data-clr="#393457"></div>
-            <div class="clr" data-clr="#606c81"></div>
-            <div class="clr" data-clr="#11adc1"></div>
-            <div class="clr" data-clr="#6df7c1"></div>
-            <div class="clr" data-clr="#ffffff"></div>
+          <div id="buttons" class="flex-extend">
+            <div id="sizes">
+              <button
+                id="pen"
+                class="button button-tertiary"
+                onclick="set_pen()"
+              >
+                <span class="big">pen</span><span class="small">p</span>
+              </button>
+              <button
+                id="fill-brush"
+                class="button button-tertiary"
+                onclick="set_fill()"
+              >
+                <span class="big">fill</span><span class="small">f</span>
+              </button>
+              <button
+                id="eraser"
+                class="button button-tertiary"
+                onclick="set_eraser()"
+              >
+                <span class="big">eraser</span><span class="small">e</span>
+              </button>
+              <div class="size button button-tertiary">
+                <div class="size-ball" data-size="5"></div>
+              </div>
+              <div class="size button button-tertiary">
+                <div class="size-ball" data-size="10"></div>
+              </div>
+              <div class="size button button-tertiary">
+                <div class="size-ball" data-size="15"></div>
+              </div>
+              <div class="size button button-tertiary">
+                <div class="size-ball" data-size="25"></div>
+              </div>
+            </div>
+            <div id="extra">
+              <button
+                id="clear"
+                class="button button-tertiary"
+                onclick="fix_me()"
+              >
+                <span class="big">clear</span><span class="small">c</span>
+              </button>
+              <button id="save" class="button button-tertiary" onclick="save()">
+                <span class="big">save</span><span class="small">s</span>
+              </button>
+            </div>
           </div>
         </div>
-        <div id="buttons" class="flex-extend">
-          <div id="sizes">
-            <button id="eraser" class="button button-tertiary" onclick="set_eraser()"><span
-                class="big">eraser</span><span class="small">e</span></button>
-            <div class="size button button-tertiary">
-              <div class="size-ball" data-size="5"></div>
-            </div>
-            <div class="size button button-tertiary">
-              <div class="size-ball" data-size="10"></div>
-            </div>
-            <div class="size button button-tertiary">
-              <div class="size-ball" data-size="15"></div>
-            </div>
-            <div class="size button button-tertiary">
-              <div class="size-ball" data-size="25"></div>
-            </div>
-          </div>
-          <div id="extra">
-            <button id="clear" class="button button-tertiary" onclick="fix_me()"><span class="big">clear</span><span
-                class="small">c</span></button>
-            <button id="save" class="button button-tertiary" onclick="save()"><span class="big">save</span><span
-                class="small">s</span></button>
-          </div>
+        <div id="canvas-container">
+          <canvas id="canvas" width="800" height="600"></canvas>
         </div>
       </div>
-      <div id="canvas-container">
-        <canvas id="canvas" width="800" height="600"></canvas>
+      <div id="chat" class="flex-extend">
+        <h2>Chat:</h2>
+        <div id="chat-text" class="flex-extend">
+          <span>Clive:</span> oh snap, this is awesome!<br />
+          <span>Bob:</span> just you wait till you see my next painting :)<br />
+        </div>
+        <div id="chat-inputs">
+          <input id="chat-input" class="flex-extend" type="text" />
+          <button
+            type="button"
+            class="button button-bright"
+            onclick="send_input_to_chat()"
+          >
+            SEND
+          </button>
+        </div>
       </div>
-    </div>
-    <div id="chat" class="flex-extend">
-      <h2>Chat:</h2>
-      <div id="chat-text" class="flex-extend">
-        <span>Clive:</span> oh snap, this is awesome!<br>
-        <span>Bob:</span> just you wait till you see my next painting :)<br>
+    </main>
+    <footer>
+      <div id="footer-random-quote" class="center-content">
+        who knows... this might just work someday
       </div>
-      <div id="chat-inputs">
-        <input id="chat-input" class="flex-extend" type="text">
-        <button type="button" class="button button-bright" onclick="send_input_to_chat()">SEND</button>
-      </div>
-    </div>
-  </main>
-  <footer>
-    <div id="footer-random-quote" class="center-content">who knows... this might just work someday</div>
-    <nav class="center-content">
-      <span>|</span>
-      <a title="about" class="link" href="about.html">about</a>
-      <a title="source code" class="link" href="https://github.com/markman4897/scribbly">source code</a>
-      <a title="author" class="link" href="author.html">author</a>
-    </nav>
-  </footer>
-</body>
-
+      <nav class="center-content">
+        <span>|</span>
+        <a title="about" class="link" href="about.html">about</a>
+        <a
+          title="source code"
+          class="link"
+          href="https://github.com/markman4897/scribbly"
+          >source code</a
+        >
+        <a title="author" class="link" href="author.html">author</a>
+      </nav>
+    </footer>
+  </body>
 </html>

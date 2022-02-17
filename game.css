@@ -144,8 +144,7 @@ main {
   padding: 0 0.2rem;
 }
 
-.button,
-a.button {
+.button {
   padding: 0 0.5em;
   height: 100%;
 }

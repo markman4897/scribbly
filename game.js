@@ -8,6 +8,20 @@ let line_width = 15
 let color = "#000"
 let canvas_color = '#000'
 
+class Tool {
+  static pen = new Tool("pen")
+  static eraser = new Tool("eraser")
+  static fill = new Tool("fill")
+
+  constructor(name) {
+    this.name = name
+  }
+}
+
+let tool = Tool.pen
+let erase = false
+let fill_brush_path_points = []
+
 let prevMouse = {}
 let prevTouch = {}
 
@@ -72,9 +86,19 @@ clrs.forEach(clr => {
   clr.style.backgroundColor = clr.dataset.clr
 })
 
+// Pen
+function set_pen() {
+  tool = Tool.pen
+}
+
 // Eraser
 function set_eraser() {
-  set_color(canvas_color)
+  tool = Tool.eraser
+}
+
+// Fill brush
+function set_fill() {
+  tool = Tool.fill
 }
 
 // Setting size balls to selected colour
@@ -118,7 +142,11 @@ function save() {
 
 // common functions
 function draw_circle(x, y) {
-  ctx.fillStyle = color
+  if (erase) {
+    ctx.fillStyle = canvas_color
+  } else {
+    ctx.fillStyle = color
+  }
 
   ctx.beginPath()
   ctx.arc(x, y, line_width / 2, 0, Math.PI * 2)
@@ -127,7 +155,11 @@ function draw_circle(x, y) {
 
 function draw_line(a, b) {
   ctx.lineWidth = line_width
-  ctx.strokeStyle = color
+  if (erase) {
+    ctx.strokeStyle = canvas_color
+  } else {
+    ctx.strokeStyle = color
+  }
 
   ctx.beginPath()
   ctx.moveTo(a.x, a.y)
@@ -135,9 +167,43 @@ function draw_line(a, b) {
   ctx.stroke()
 }
 
-function draw(a, b) {
+function draw_pen(a, b) {
   draw_circle(b.x, b.y)
   draw_line(a, b)
+}
+
+function draw_fill_brush(a, b) {
+  fill_brush_path_points.push(b)
+
+  let temp = Array.from(fill_brush_path_points)
+
+  ctx.beginPath()
+  ctx.moveTo(temp[0].x, temp[0].y)
+  
+  temp.shift()
+  temp.forEach(p => {
+    ctx.lineTo(p.x, p.y)
+  });
+  
+  ctx.closePath()
+  ctx.fill()
+}
+
+function draw(a, b) {
+  switch (tool) {
+    case Tool.pen:
+      erase = false
+      draw_pen(a, b)
+      break
+    case Tool.eraser:
+      erase = true
+      draw_pen(a, b)
+      break
+    case Tool.fill:
+      erase = false
+      draw_fill_brush(a, b)
+      break
+  }
 }
 
 function calibrate_position(x, y) {
@@ -176,7 +242,10 @@ canvas.addEventListener("mousedown", (e) => {
 window.addEventListener("mousemove", mouse_draw)
 
 window.addEventListener("mouseup", (e) => {
-  if (e.buttons === 0) drawing = false
+  if (e.buttons === 0) {
+    drawing = false
+    fill_brush_path_points = []
+  }
 })
 
 // touch functions
@@ -240,6 +309,8 @@ window.addEventListener("touchend", (e) => {
       ongoingTouches.splice(idx, 1)
     }
   }
+
+  fill_brush_path_points = []
 })
 
 
