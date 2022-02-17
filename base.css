@@ -201,6 +201,10 @@ code {
   display: none;
 }
 
+.button-pressed {
+  outline: 0.15rem solid var(--primary);
+}
+
 .button-bright {
   background: var(--secondary);
   color: var(--background);

@@ -3,6 +3,10 @@ const ctx = canvas.getContext("2d")
 
 const chat_input = document.getElementById("chat-input")
 const chat_text = document.getElementById("chat-text")
+const eraser_btn = document.getElementById("eraser")
+
+ctx.lineJoin = "round"
+ctx.lineCap = "round"
 
 let line_width = 15
 let color = "#000"
@@ -10,7 +14,6 @@ let canvas_color = '#000'
 
 class Tool {
   static pen = new Tool("pen")
-  static eraser = new Tool("eraser")
   static fill = new Tool("fill")
 
   constructor(name) {
@@ -93,7 +96,13 @@ function set_pen() {
 
 // Eraser
 function set_eraser() {
-  tool = Tool.eraser
+  erase = !erase
+
+  if (erase) {
+    eraser_btn.classList.add('button-pressed')
+  } else {
+    eraser_btn.classList.remove('button-pressed')
+  }
 }
 
 // Fill brush
@@ -142,12 +151,6 @@ function save() {
 
 // common functions
 function draw_circle(x, y) {
-  if (erase) {
-    ctx.fillStyle = canvas_color
-  } else {
-    ctx.fillStyle = color
-  }
-
   ctx.beginPath()
   ctx.arc(x, y, line_width / 2, 0, Math.PI * 2)
   ctx.fill()
@@ -155,11 +158,6 @@ function draw_circle(x, y) {
 
 function draw_line(a, b) {
   ctx.lineWidth = line_width
-  if (erase) {
-    ctx.strokeStyle = canvas_color
-  } else {
-    ctx.strokeStyle = color
-  }
 
   ctx.beginPath()
   ctx.moveTo(a.x, a.y)
@@ -168,7 +166,6 @@ function draw_line(a, b) {
 }
 
 function draw_pen(a, b) {
-  draw_circle(b.x, b.y)
   draw_line(a, b)
 }
 
@@ -190,17 +187,19 @@ function draw_fill_brush(a, b) {
 }
 
 function draw(a, b) {
+  if (erase) {
+    ctx.fillStyle = canvas_color
+    ctx.strokeStyle = canvas_color
+  } else {
+    ctx.fillStyle = color
+    ctx.strokeStyle = color
+  }
+  
   switch (tool) {
     case Tool.pen:
-      erase = false
-      draw_pen(a, b)
-      break
-    case Tool.eraser:
-      erase = true
       draw_pen(a, b)
       break
     case Tool.fill:
-      erase = false
       draw_fill_brush(a, b)
       break
   }
