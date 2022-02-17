@@ -86,20 +86,14 @@ main {
   aspect-ratio: 1;
 }
 
-#tools,
-#toggle-tools,
-#sizes,
-#extra {
+#buttons > div {
   height: 1.8em;
   display: flex;
 }
 
 #controlls,
 #buttons,
-#tools,
-#toggle-tools,
-#sizes,
-#extra {
+#buttons > div {
   gap: 0.2em;
 }
 
@@ -230,10 +224,7 @@ main {
   #controlls,
   .colors-row,
   #buttons,
-  #tools,
-  #toggle-tools,
-  #sizes,
-  #extra {
+  #buttons > div {
     flex-direction: column;
   }
 
@@ -257,10 +248,7 @@ main {
     width: 100%;
   }
 
-  #tools,
-  #toggle-tools,
-  #sizes,
-  #extra {
+  #buttons > div {
     height: inherit;
     width: 1.8em;
   }

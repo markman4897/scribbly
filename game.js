@@ -12,6 +12,9 @@ let line_width = 15
 let color = "#000"
 let canvas_color = '#000'
 
+var drawing_history = new Array();
+var drawing_history_pointer = -1;
+
 class Tool {
   static pen = new Tool("pen")
   static fill = new Tool("fill")
@@ -257,6 +260,7 @@ window.addEventListener("mousemove", mouse_draw)
 
 window.addEventListener("mouseup", (e) => {
   if (e.buttons === 0) {
+    if (drawing) drawing_history_push()
     drawing = false
     fill_brush_path_points = []
   }
@@ -288,6 +292,7 @@ function ongoingTouchIndexById(idToFind) {
 }
 
 canvas.addEventListener("touchstart", (e) => {
+  drawing = true
   e.preventDefault()
   let touches = e.changedTouches;
   let currentPos = getCurrentTouchPos(e)
@@ -325,7 +330,41 @@ window.addEventListener("touchend", (e) => {
   }
 
   fill_brush_path_points = []
+  
+  if (drawing) drawing_history_push()
+  drawing = false
 })
+
+
+// UNDO/REDO
+	
+function drawing_history_push() {
+  drawing_history_pointer++
+  
+  if (drawing_history_pointer < drawing_history.length) drawing_history.length = drawing_history_pointer
+
+  drawing_history.push(canvas.toDataURL())
+}
+
+function undo() {
+  if (drawing_history_pointer > 0) {
+      drawing_history_pointer--
+      var canvasPic = new Image()
+      canvasPic.src = drawing_history[drawing_history_pointer]
+      
+      canvasPic.onload = () => {ctx.drawImage(canvasPic, 0, 0)}
+  }
+}
+
+function redo() {
+  if (drawing_history_pointer < drawing_history.length-1) {
+      drawing_history_pointer++
+      var canvasPic = new Image()
+      canvasPic.src = drawing_history[drawing_history_pointer]
+
+      canvasPic.onload = () => {ctx.drawImage(canvasPic, 0, 0)}
+  }
+}
 
 
 // CHAT HANDLING
