@@ -195,7 +195,7 @@ main {
   }
 
   /* HACK: I can't figure out how to automatically expand controlls width when its children wrap */
-  @media screen and (max-height: 38.875em) {
+  @media screen and (max-height: 42.8em) {
     #controlls {
       width: 4.2em;
     }
