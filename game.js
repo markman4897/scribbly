@@ -44,6 +44,7 @@ window.onload = (e) => { // fires when everything is loaded
   clear()
 
   set_selected_tool('pen')
+  set_selected_size(15)
 };
 
 
@@ -105,6 +106,18 @@ function set_selected_tool(tool_id) {
   document.getElementById(tool_id).classList.add('button-pressed')
 }
 
+// Set selected tool
+function set_selected_size(data_size) {
+  let sizes = document.getElementById('sizes').children
+
+  Array.from(sizes).forEach(size => {
+    if (size.classList.contains('button-pressed')) size.classList.remove('button-pressed')
+    
+    let temp = size.children[0].getAttribute('data-size')
+    if (temp == data_size) size.classList.add('button-pressed')
+  });
+}
+
 // Pen
 function set_pen() {
   tool = Tool.pen
@@ -140,7 +153,9 @@ function color_size_balls(color) {
 let sizs = document.querySelectorAll(".size")
 sizs.forEach(siz => {
   siz.addEventListener("click", () => {
-    line_width = siz.firstElementChild.dataset.size
+    let size = siz.firstElementChild.dataset.size
+    line_width = size
+    set_selected_size(size)
   })
 })
 
