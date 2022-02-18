@@ -153,6 +153,8 @@ function fix_me() {
 function clear() {
   ctx.fillStyle = canvas_color
   ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+  drawing_history_push()
 }
 
 // Saving drawing as image
@@ -260,9 +262,12 @@ window.addEventListener("mousemove", mouse_draw)
 
 window.addEventListener("mouseup", (e) => {
   if (e.buttons === 0) {
-    if (drawing) drawing_history_push()
+    if (drawing) {
+      fill_brush_path_points = []
+      drawing_history_push()
+    }
+
     drawing = false
-    fill_brush_path_points = []
   }
 })
 
@@ -328,10 +333,12 @@ window.addEventListener("touchend", (e) => {
       ongoingTouches.splice(idx, 1)
     }
   }
-
-  fill_brush_path_points = []
   
-  if (drawing) drawing_history_push()
+  if (drawing) {
+    drawing_history_push()
+    fill_brush_path_points = []
+  }
+
   drawing = false
 })
 
