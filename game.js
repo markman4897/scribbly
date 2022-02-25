@@ -1,303 +1,318 @@
-const canvas = document.getElementById("canvas")
-const ctx = canvas.getContext("2d")
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
 
-const chat_input = document.getElementById("chat-input")
-const chat_text = document.getElementById("chat-text")
-const eraser_btn = document.getElementById("eraser")
+const chat_input = document.getElementById("chat-input");
+const chat_text = document.getElementById("chat-text");
+const eraser_btn = document.getElementById("eraser");
 
-ctx.lineJoin = "round"
-ctx.lineCap = "round"
+ctx.lineJoin = "round";
+ctx.lineCap = "round";
 
-let line_width = 15
-let color = "#000"
-let canvas_color = '#000'
+let line_width = 15;
+let color = "#000";
+let canvas_color = "#000";
 
 var drawing_history = new Array();
 var drawing_history_pointer = -1;
 
 class Tool {
-  static pen = new Tool("pen")
-  static fill = new Tool("fill")
+  static pen = new Tool("pen");
+  static fill = new Tool("fill");
 
   constructor(name) {
-    this.name = name
+    this.name = name;
   }
 }
 
-let tool = Tool.pen
-let erase = false
-let fill_brush_path_points = []
+let tool = Tool.pen;
+let erase = false;
+let fill_brush_path_points = [];
 
-let prevMouse = {}
-let prevTouch = {}
+let prevMouse = {};
+let prevTouch = {};
 
-let drawing = false
-let ongoingTouches = []
+let drawing = false;
+let ongoingTouches = [];
 
-let canvas_size_ratio = null
+let canvas_size_ratio = null;
 
 // INITIALISING
 // window.addEventListener('DOMContentLoaded', (e) => {  // fires when dom is loaded but before CSS etc is loaded
-window.onload = (e) => { // fires when everything is loaded
-  calculate_viewport_size_dependant_things()
-  canvas_color = window.getComputedStyle(canvas).backgroundColor
-  clear()
+window.onload = (e) => {
+  // fires when everything is loaded
+  calculate_viewport_size_dependant_things();
+  canvas_color = window.getComputedStyle(canvas).backgroundColor;
+  clear();
 
-  set_selected_tool('pen')
-  set_selected_size(15)
+  set_selected_tool("pen");
+  set_selected_size(15);
+
+  get_user_id();
+
+  /* if (room_id !== null) join_room(); */
 };
-
 
 // DISABLING ACCIDENTAL UNLOAD
 window.addEventListener("beforeunload", (e) => {
   e.preventDefault();
   e.returnValue = "";
-})
-
+});
 
 // SETTING VARIABLES DEPENDANT ON VIEWPORT SIZE
 function calculate_viewport_size_dependant_things() {
   // this is a HACK! rewrite in css if possible or upgrade this code so it doesn't push down chat
   // (replace canvas container with something else that still limits canvas width)
-  let main_style = getComputedStyle(document.getElementsByTagName('main')[0])
-  let footer = document.getElementsByTagName('footer')[0].getBoundingClientRect()
-  let controlls = document.getElementById('controlls').getBoundingClientRect()
-  let max_canvas_size = footer.top - controlls.bottom - main_style.marginBottom.replace("px", "")
-  document.documentElement.style.setProperty('--max-canvas-height', max_canvas_size + 'px');
+  let main_style = getComputedStyle(document.getElementsByTagName("main")[0]);
+  let footer = document
+    .getElementsByTagName("footer")[0]
+    .getBoundingClientRect();
+  let controlls = document.getElementById("controlls").getBoundingClientRect();
+  let max_canvas_size =
+    footer.top - controlls.bottom - main_style.marginBottom.replace("px", "");
+  document.documentElement.style.setProperty(
+    "--max-canvas-height",
+    max_canvas_size + "px"
+  );
 
-  canvas_size_ratio = canvas.scrollHeight / canvas.height
+  canvas_size_ratio = canvas.scrollHeight / canvas.height;
 
-  let balls = document.querySelectorAll(".size-ball")
-  balls = Array.from(balls)
-  balls.forEach(ball => {
-    ball.style.height = (ball.dataset.size * canvas_size_ratio).toString() + "px"
-  })
+  let balls = document.querySelectorAll(".size-ball");
+  balls = Array.from(balls);
+  balls.forEach((ball) => {
+    ball.style.height =
+      (ball.dataset.size * canvas_size_ratio).toString() + "px";
+  });
 }
 
-window.addEventListener("resize", calculate_viewport_size_dependant_things)
-window.addEventListener("orientationchange", calculate_viewport_size_dependant_things)
-
+window.addEventListener("resize", calculate_viewport_size_dependant_things);
+window.addEventListener(
+  "orientationchange",
+  calculate_viewport_size_dependant_things
+);
 
 // MAPPING BUTTONS
 
 function set_color(clr) {
-  color = clr
-  color_size_balls(clr)
+  color = clr;
+  color_size_balls(clr);
 }
 
 // Buttons for changing colour
-let clrs = document.querySelectorAll(".clr")
-clrs = Array.from(clrs)
-clrs.forEach(clr => {
+let clrs = document.querySelectorAll(".clr");
+clrs = Array.from(clrs);
+clrs.forEach((clr) => {
   clr.addEventListener("click", () => {
-    set_color(clr.dataset.clr)
-  })
-  clr.style.backgroundColor = clr.dataset.clr
-})
+    set_color(clr.dataset.clr);
+  });
+  clr.style.backgroundColor = clr.dataset.clr;
+});
 
 // Set selected tool
 function set_selected_tool(tool_id) {
-  let tools = document.getElementById('tools').children
+  let tools = document.getElementById("tools").children;
 
-  Array.from(tools).forEach(tool => {
-    if (tool.classList.contains('button-pressed')) tool.classList.remove('button-pressed')
+  Array.from(tools).forEach((tool) => {
+    if (tool.classList.contains("button-pressed"))
+      tool.classList.remove("button-pressed");
   });
 
-  document.getElementById(tool_id).classList.add('button-pressed')
+  document.getElementById(tool_id).classList.add("button-pressed");
 }
 
 // Set selected tool
 function set_selected_size(data_size) {
-  let sizes = document.getElementById('sizes').children
+  let sizes = document.getElementById("sizes").children;
 
-  Array.from(sizes).forEach(size => {
-    if (size.classList.contains('button-pressed')) size.classList.remove('button-pressed')
-    
-    let temp = size.children[0].getAttribute('data-size')
-    if (temp == data_size) size.classList.add('button-pressed')
+  Array.from(sizes).forEach((size) => {
+    if (size.classList.contains("button-pressed"))
+      size.classList.remove("button-pressed");
+
+    let temp = size.children[0].getAttribute("data-size");
+    if (temp == data_size) size.classList.add("button-pressed");
   });
 }
 
 // Pen
 function set_pen() {
-  tool = Tool.pen
-  set_selected_tool('pen')
+  tool = Tool.pen;
+  set_selected_tool("pen");
 }
 
 // Fill brush
 function set_fill() {
-  tool = Tool.fill
-  set_selected_tool('fill-brush')
+  tool = Tool.fill;
+  set_selected_tool("fill-brush");
 }
 
 // Eraser
 function set_eraser() {
-  erase = !erase
+  erase = !erase;
 
   if (erase) {
-    eraser_btn.classList.add('button-pressed')
+    eraser_btn.classList.add("button-pressed");
   } else {
-    eraser_btn.classList.remove('button-pressed')
+    eraser_btn.classList.remove("button-pressed");
   }
 }
 
 // Setting size balls to selected colour
-let size_balls = document.querySelectorAll(".size-ball")
+let size_balls = document.querySelectorAll(".size-ball");
 function color_size_balls(color) {
-  size_balls.forEach(ball => {
-    ball.style.backgroundColor = color
-  })
+  size_balls.forEach((ball) => {
+    ball.style.backgroundColor = color;
+  });
 }
 
 // Buttons for changing brush size
-let sizs = document.querySelectorAll(".size")
-sizs.forEach(siz => {
+let sizs = document.querySelectorAll(".size");
+sizs.forEach((siz) => {
   siz.addEventListener("click", () => {
-    let size = siz.firstElementChild.dataset.size
-    line_width = size
-    set_selected_size(size)
-  })
-})
+    let size = siz.firstElementChild.dataset.size;
+    line_width = size;
+    set_selected_size(size);
+  });
+});
 
 // Clearing canvas
 function fix_me() {
-  console.log("figure out why this is needed! (game.js)")
-  clear()
+  console.log("figure out why this is needed! (game.js)");
+  clear();
 }
 
 function clear() {
-  ctx.fillStyle = canvas_color
-  ctx.fillRect(0, 0, canvas.width, canvas.height)
+  ctx.fillStyle = canvas_color;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  drawing_history_push()
+  drawing_history_push();
 }
 
 // Saving drawing as image
 function save() {
-  let data = canvas.toDataURL("imag/png")
-  let a = document.createElement("a")
-  a.href = data
-  a.download = "scribbly.png"
-  a.click()
+  let data = canvas.toDataURL("imag/png");
+  let a = document.createElement("a");
+  a.href = data;
+  a.download = "scribbly.png";
+  a.click();
 }
-
 
 // DRAWING ON CANVAS
 
 // common functions
 function draw_circle(x, y) {
-  ctx.beginPath()
-  ctx.arc(x, y, line_width / 2, 0, Math.PI * 2)
-  ctx.fill()
+  ctx.beginPath();
+  ctx.arc(x, y, line_width / 2, 0, Math.PI * 2);
+  ctx.fill();
 }
 
 function draw_line(a, b) {
-  ctx.lineWidth = line_width
+  ctx.lineWidth = line_width;
 
-  ctx.beginPath()
-  ctx.moveTo(a.x, a.y)
-  ctx.lineTo(b.x, b.y)
-  ctx.stroke()
+  ctx.beginPath();
+  ctx.moveTo(a.x, a.y);
+  ctx.lineTo(b.x, b.y);
+  ctx.stroke();
 }
 
 function draw_pen(a, b) {
-  draw_line(a, b)
+  draw_line(a, b);
 }
 
 function draw_fill_brush(a, b) {
-  fill_brush_path_points.push(b)
+  fill_brush_path_points.push(b);
 
-  let temp = Array.from(fill_brush_path_points)
+  let temp = Array.from(fill_brush_path_points);
 
-  ctx.beginPath()
-  ctx.moveTo(temp[0].x, temp[0].y)
-  
-  temp.shift()
-  temp.forEach(p => {
-    ctx.lineTo(p.x, p.y)
+  ctx.beginPath();
+  ctx.moveTo(temp[0].x, temp[0].y);
+
+  temp.shift();
+  temp.forEach((p) => {
+    ctx.lineTo(p.x, p.y);
   });
-  
-  ctx.closePath()
-  ctx.fill()
+
+  ctx.closePath();
+  ctx.fill();
 }
 
 function draw(a, b) {
+  if (state == states.game.guessing) return;
+
   if (erase) {
-    ctx.fillStyle = canvas_color
-    ctx.strokeStyle = canvas_color
+    ctx.fillStyle = canvas_color;
+    ctx.strokeStyle = canvas_color;
   } else {
-    ctx.fillStyle = color
-    ctx.strokeStyle = color
+    ctx.fillStyle = color;
+    ctx.strokeStyle = color;
   }
-  
+
   switch (tool) {
     case Tool.pen:
-      draw_pen(a, b)
-      break
+      draw_pen(a, b);
+      break;
     case Tool.fill:
-      draw_fill_brush(a, b)
-      break
+      draw_fill_brush(a, b);
+      break;
   }
 }
 
 function calibrate_position(x, y) {
-  let out = {}
+  let out = {};
   let rect = canvas.getBoundingClientRect();
 
-  out.x = (x - rect.left) / canvas_size_ratio
-  out.y = (y - rect.top) / canvas_size_ratio
+  out.x = (x - rect.left) / canvas_size_ratio;
+  out.y = (y - rect.top) / canvas_size_ratio;
 
-  return out
+  return out;
 }
 
 // mouse functions
 function getCurrentMousePos(e) {
   let currentPos = calibrate_position(e.clientX, e.clientY);
-  return currentPos
+  return currentPos;
 }
 
 function mouse_draw(e) {
-  let currentPos = getCurrentMousePos(e)
+  let currentPos = getCurrentMousePos(e);
 
   if (!(prevMouse.x == null || prevMouse.y == null || !drawing)) {
-    draw(prevMouse, currentPos)
+    draw(prevMouse, currentPos);
   }
 
-  prevMouse = currentPos
+  prevMouse = currentPos;
 }
 
 canvas.addEventListener("mousedown", (e) => {
   if (e.buttons === 1) {
-    drawing = true
-    mouse_draw(e)
+    drawing = true;
+    mouse_draw(e);
   }
-})
+});
 
-window.addEventListener("mousemove", mouse_draw)
+window.addEventListener("mousemove", mouse_draw);
 
 window.addEventListener("mouseup", (e) => {
   if (e.buttons === 0) {
     if (drawing) {
-      fill_brush_path_points = []
-      drawing_history_push()
+      fill_brush_path_points = [];
+      drawing_history_push();
     }
 
-    drawing = false
+    drawing = false;
   }
-})
+});
 
 // touch functions
 function getCurrentTouchPos(e) {
   let currentPos = calibrate_position(e.pageX, e.pageY);
-  return currentPos
+  return currentPos;
 }
 
 function touch_draw(e) {
-  let currentPos = getCurrentTouchPos(e)
+  let currentPos = getCurrentTouchPos(e);
 
-  draw(prevTouch, currentPos)
+  draw(prevTouch, currentPos);
 
-  prevTouch = currentPos
+  prevTouch = currentPos;
 }
 
 function ongoingTouchIndexById(idToFind) {
@@ -312,18 +327,18 @@ function ongoingTouchIndexById(idToFind) {
 }
 
 canvas.addEventListener("touchstart", (e) => {
-  drawing = true
-  e.preventDefault()
+  drawing = true;
+  e.preventDefault();
   let touches = e.changedTouches;
-  let currentPos = getCurrentTouchPos(e)
+  let currentPos = getCurrentTouchPos(e);
 
-  prevTouch = currentPos
+  prevTouch = currentPos;
 
   for (let i = 0; i < touches.length; i++) {
     ongoingTouches.push(touches[i]);
-    touch_draw(touches[i])
+    touch_draw(touches[i]);
   }
-})
+});
 
 window.addEventListener("touchmove", (e) => {
   let touches = e.changedTouches;
@@ -332,83 +347,66 @@ window.addEventListener("touchmove", (e) => {
     let idx = ongoingTouchIndexById(touches[i].identifier);
 
     if (idx >= 0) {
-      touch_draw(touches[i])
+      touch_draw(touches[i]);
 
-      ongoingTouches.splice(idx, 1, touches[i])
+      ongoingTouches.splice(idx, 1, touches[i]);
     }
   }
-})
+});
 
 window.addEventListener("touchend", (e) => {
-  let touches = e.changedTouches
+  let touches = e.changedTouches;
 
   for (let i = 0; i < touches.length; i++) {
     let idx = ongoingTouchIndexById(touches[i].identifier);
     if (idx >= 0) {
-      ongoingTouches.splice(idx, 1)
+      ongoingTouches.splice(idx, 1);
     }
   }
-  
+
   if (drawing) {
-    drawing_history_push()
-    fill_brush_path_points = []
+    drawing_history_push();
+    fill_brush_path_points = [];
   }
 
-  drawing = false
-})
-
+  drawing = false;
+});
 
 // UNDO/REDO
-	
-function drawing_history_push() {
-  drawing_history_pointer++
-  
-  if (drawing_history_pointer < drawing_history.length) drawing_history.length = drawing_history_pointer
 
-  drawing_history.push(canvas.toDataURL())
+function drawing_history_push() {
+  drawing_history_pointer++;
+
+  if (drawing_history_pointer < drawing_history.length)
+    drawing_history.length = drawing_history_pointer;
+
+  let data = canvas.toDataURL();
+  drawing_history.push(data);
+  send_draw_state(data);
 }
 
 function undo() {
   if (drawing_history_pointer > 0) {
-      drawing_history_pointer--
-      var canvasPic = new Image()
-      canvasPic.src = drawing_history[drawing_history_pointer]
-      
-      canvasPic.onload = () => {ctx.drawImage(canvasPic, 0, 0)}
+    drawing_history_pointer--;
+    redraw_canvas(drawing_history[drawing_history_pointer]);
   }
 }
 
 function redo() {
-  if (drawing_history_pointer < drawing_history.length-1) {
-      drawing_history_pointer++
-      var canvasPic = new Image()
-      canvasPic.src = drawing_history[drawing_history_pointer]
-
-      canvasPic.onload = () => {ctx.drawImage(canvasPic, 0, 0)}
+  if (drawing_history_pointer < drawing_history.length - 1) {
+    drawing_history_pointer++;
+    redraw_canvas(drawing_history[drawing_history_pointer]);
   }
 }
 
+function redraw_canvas(data) {
+  var canvasPic = new Image();
+  canvasPic.src = data;
 
-// CHAT HANDLING
-function add_text_to_chat(author, text) {
-  let author_corrected = author.toLowerCase()
-  author_corrected = author_corrected.charAt(0).toUpperCase() + author_corrected.slice(1)
-  let temp = "<span>" + author_corrected + ":</span> " + text + "<br>"
-  chat_text.innerHTML += temp
+  canvasPic.onload = () => {
+    ctx.drawImage(canvasPic, 0, 0);
+  };
 }
-
-function send_input_to_chat() {
-  if (chat_input.value != "") {
-    add_text_to_chat("me", chat_input.value)
-    chat_input.value = ""
-  }
-}
-
-chat_input.addEventListener("keypress", (e) => {
-  if (e.key === 'Enter') {
-    send_input_to_chat()
-  }
-})
 
 /*
           <div class="clr" data-clr="#000000"></div>
@@ -430,3 +428,181 @@ chat_input.addEventListener("keypress", (e) => {
           <div class="clr" data-clr="#FFFF00"></div>
           <div class="clr" data-clr="#FFFFFF"></div>
           */
+
+/* MULTIPLAYER PART */
+
+let username = null;
+let user_id = null;
+let room_id = null;
+let state = null;
+
+const states = {
+  drawing: 0,
+  game: {
+    drawing: 1,
+    guessing: 2,
+  },
+};
+
+const random_names = [
+  "jolly",
+  "silly",
+  "grumpy",
+  "itchy",
+  "sappy",
+  "sloppy",
+  "fancy",
+  "scary",
+  "witty",
+  "lively",
+  "teeny",
+  "scruffy",
+  "angry",
+  "lovely",
+  "funny",
+  "boss",
+];
+
+username = random_names[Math.floor(Math.random() * random_names.length)];
+
+let params = new URLSearchParams(document.location.search);
+room_id = params.get("room_id");
+
+/* var HOST = "ws:localhost:3000"; */
+let HOST = "ws://scribblio.herokuapp.com/";
+let ws = new WebSocket(HOST);
+
+const lobby = document.getElementById("lobby");
+const lobby_input = document.getElementById("room_id");
+const username_input = document.getElementById("username");
+
+function err(text) {
+  add_text_to_chat("ERROR!", text);
+}
+
+ws.onmessage = function (message) {
+  let data = JSON.parse(message.data);
+
+  if (data.error) err(data);
+
+  switch (data.type) {
+    case "new_user_created":
+      user_id = data.user_id;
+      break;
+
+    case "new_room_created":
+      room_id = data.room_id;
+      push_history(room_id);
+      state = states.game.drawing;
+      break;
+
+    case "room_joined":
+      room_id = room_id;
+      push_history(room_id);
+      state = states.game.guessing;
+      break;
+
+    case "message":
+      add_text_to_chat(data.username, data.message);
+      break;
+
+    case "new_draw_state":
+      receive_draw_state(data.state);
+      break;
+
+    case "error":
+      err(data.message);
+      break;
+
+    default:
+      err("unknown type received");
+      break;
+  }
+};
+
+function just_drawing() {
+  state = states.drawing;
+  lobby.style.visibility = "hidden";
+}
+
+function get_user_id() {
+  ws.send(
+    JSON.stringify({
+      type: "new_user",
+      /* username: username_input.value || "test_user", */
+      username: username,
+    })
+  );
+}
+
+function new_room() {
+  ws.send(
+    JSON.stringify({
+      type: "new_room",
+      user_id: user_id,
+    })
+  );
+}
+
+function join_room() {
+  room_id = room_id || lobby_input.value;
+  ws.send(
+    JSON.stringify({
+      type: "join_room",
+      user_id: user_id,
+      room_id: room_id,
+    })
+  );
+}
+
+function send_draw_state(state) {
+  ws.send(
+    JSON.stringify({
+      type: "new_draw_state",
+      user_id: user_id,
+      room_id: room_id,
+      state: state,
+    })
+  );
+}
+
+function receive_draw_state(state) {
+  redraw_canvas(state);
+}
+
+function push_history(room_id) {
+  lobby.style.visibility = "hidden";
+
+  const url = new URL(window.location);
+  url.searchParams.set("room_id", room_id);
+  window.history.pushState({}, "", url);
+}
+
+// CHAT HANDLING
+function add_text_to_chat(author, text) {
+  let author_corrected = author.toLowerCase();
+  author_corrected =
+    author_corrected.charAt(0).toUpperCase() + author_corrected.slice(1);
+  let temp = "<span>" + author_corrected + ":</span> " + text + "<br>";
+  chat_text.innerHTML += temp;
+}
+
+function send_input_message() {
+  if (chat_input.value != "") {
+    add_text_to_chat("me", chat_input.value);
+    ws.send(
+      JSON.stringify({
+        type: "message",
+        user_id: user_id,
+        message: chat_input.value,
+      })
+    );
+    chat_input.value = "";
+  }
+}
+
+chat_input.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    send_input_message();
+  }
+});

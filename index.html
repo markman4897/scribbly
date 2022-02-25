@@ -1,67 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/normalize.css/normalize.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    />
 
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/normalize.css/normalize.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="stylesheet" href="base.css" />
+    <script src="radio.js" defer></script>
+    <script src="random_footer_quote.js" defer></script>
 
-  <link rel="stylesheet" href="base.css">
-  <script src="radio.js" defer></script>
-  <script src="random_footer_quote.js" defer></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scribbly</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scribbly</title>
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="page.css" />
+    <link rel="stylesheet" href="index.css" />
+  </head>
 
-  <link rel="stylesheet" href="page.css">
-  <link rel="stylesheet" href="index.css">
-</head>
-
-<body>
-  <header>
-    <a title="home" href="index.html" class="link"><i class="fas fa-home fa-2x to-left"></i></a>
-    <h1 class="flex-extend center-content">Scribbly</h1>
-    <audio id="radio" src="http://relay.publicdomainradio.org:80/jazz_swing.aac">
-      radio not supported
-    </audio>
-    <button class="to-right button button-transparent" onclick="radioToggle()">
-      <i id="radio-button-icon" class="fas fa-play-circle fa-2x"></i>
-    </button>
-  </header>
-  <main class="flex-extend">
-    <section class="main-free flex-extend center-text">
-      <h2>Description</h2>
-      <p>A simple aesthetic drawing program. You can select the colour and size of the brush and draw away.</p>
-      <p>There is also a CLEAR button that clears the canvas so you can start over and even a SAVE button that lets you
-        download your lovely creation.</p>
-      <p>It even supports mobile!</p>
-      <a title="game" href="game.html" class="button button-bright">start a
-        new
-        drawing</a>
-    </section>
-    <aside class="main-bordered center-text center-content">
-      <h2>Gallery</h2>
-      <p>Check out some of the creations from players</p>
-      <div class="main-bordered-images">
-        <img src="images/scribbly.png" alt="creation one" class="image" loading="lazy">
-        <img src="images/scribbly1.png" alt="creation two" class="image" loading="lazy">
-        <img src="images/scribbly2.png" alt="creation three" class="image" loading="lazy">
-        <img src="images/scribbly3.png" alt="creation four" class="image" loading="lazy">
+  <body>
+    <header>
+      <a title="home" href="index.html" class="link"
+        ><i class="fas fa-home fa-2x to-left"></i
+      ></a>
+      <h1 class="flex-extend center-content">Scribbly</h1>
+      <audio
+        id="radio"
+        src="http://relay.publicdomainradio.org:80/jazz_swing.aac"
+      >
+        radio not supported
+      </audio>
+      <button
+        class="to-right button button-transparent"
+        onclick="radioToggle()"
+      >
+        <i id="radio-button-icon" class="fas fa-play-circle fa-2x"></i>
+      </button>
+    </header>
+    <main class="flex-extend">
+      <section class="main-free flex-extend center-text">
+        <h2>Description</h2>
+        <p>
+          A simple aesthetic drawing program. You can select the colour and size
+          of the brush and draw away.
+        </p>
+        <p>
+          There is also a CLEAR button that clears the canvas so you can start
+          over and even a SAVE button that lets you download your lovely
+          creation.
+        </p>
+        <p>It even supports mobile!</p>
+        <a title="game" href="game.html" class="button button-bright"
+          >start a new game</a
+        >
+      </section>
+      <aside class="main-bordered center-text center-content">
+        <h2>Gallery</h2>
+        <p>Check out some of the creations from players</p>
+        <div class="main-bordered-images">
+          <img
+            src="images/scribbly.png"
+            alt="creation one"
+            class="image"
+            loading="lazy"
+          />
+          <img
+            src="images/scribbly1.png"
+            alt="creation two"
+            class="image"
+            loading="lazy"
+          />
+          <img
+            src="images/scribbly2.png"
+            alt="creation three"
+            class="image"
+            loading="lazy"
+          />
+          <img
+            src="images/scribbly3.png"
+            alt="creation four"
+            class="image"
+            loading="lazy"
+          />
+        </div>
+        <a title="gallery" href="gallery.html" class="button button-bright"
+          >gallery</a
+        >
+      </aside>
+    </main>
+    <footer>
+      <div id="footer-random-quote" class="center-content">
+        who knows... this might just work someday
       </div>
-      <a title="gallery" href="gallery.html" class="button button-bright">gallery</a>
-    </aside>
-  </main>
-  <footer>
-    <div id="footer-random-quote" class="center-content">who knows... this might just work someday</div>
-    <nav class="center-content">
-      <span>|</span>
-      <a title="about" class="link" href="about.html">about</a>
-      <a title="source code" class="link" href="https://github.com/markman4897/scribbly">source code</a>
-      <a title="author" class="link" href="author.html">author</a>
-    </nav>
-  </footer>
-</body>
-
+      <nav class="center-content">
+        <span>|</span>
+        <a title="about" class="link" href="about.html">about</a>
+        <a
+          title="source code"
+          class="link"
+          href="https://github.com/markman4897/scribbly"
+          >source code</a
+        >
+        <a title="author" class="link" href="author.html">author</a>
+      </nav>
+    </footer>
+  </body>
 </html>

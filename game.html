@@ -3,7 +3,7 @@
   <head>
     <link
       rel="stylesheet"
-      href="https://unpkg.com/normalize.css/normalize.css"
+      href="https://unpkg.com/normalize.css@8.0.1/normalize.css"
     />
     <link
       rel="stylesheet"
@@ -140,6 +140,31 @@
         </div>
         <div id="canvas-container">
           <canvas id="canvas" width="800" height="600"></canvas>
+          <div id="lobby" class="center-content-vertical">
+            <button
+              id="drawing"
+              onclick="just_drawing()"
+              class="button button-bright"
+            >
+              drawing
+            </button>
+            <button
+              id="new_room"
+              onclick="new_room()"
+              class="button button-bright"
+            >
+              new room
+            </button>
+            <button
+              id="join_room"
+              onclick="join_room()"
+              class="button button-bright"
+            >
+              join room
+            </button>
+            <input type="text" id="room_id" placeholder="room id" />
+            <!-- <input type="text" id="username" placeholder="username" /> -->
+          </div>
         </div>
       </div>
       <div id="chat" class="flex-extend">
@@ -153,7 +178,7 @@
           <button
             type="button"
             class="button button-bright"
-            onclick="send_input_to_chat()"
+            onclick="send_input_message()"
           >
             SEND
           </button>

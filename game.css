@@ -143,9 +143,8 @@ main {
   padding: 0 0.2rem;
 }
 
-.button {
+#controlls .button {
   padding: 0 0.5em;
-  height: 100%;
 }
 
 /* MEDIA QUERIES */
@@ -273,4 +272,22 @@ main {
   #controlls {
     border-radius: 0.5em 0.5em 0 0;
   }
+}
+
+/* experimental area!!! */
+#canvas-container {
+  position: relative;
+}
+
+#lobby {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--shade);
+}
+
+#lobby > * {
+  margin: 0.2em;
 }
