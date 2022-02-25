@@ -469,12 +469,12 @@ let params = new URLSearchParams(document.location.search);
 room_id = params.get("room_id");
 
 /* var HOST = "ws:localhost:3000"; */
-let HOST = "ws://scribblio.herokuapp.com/";
+let HOST = "wss://scribblio.herokuapp.com/";
 let ws = new WebSocket(HOST);
 
 const lobby = document.getElementById("lobby");
 const lobby_input = document.getElementById("room_id");
-const username_input = document.getElementById("username");
+/* const username_input = document.getElementById("username"); */
 
 function err(text) {
   add_text_to_chat("ERROR!", text);
@@ -545,7 +545,7 @@ function new_room() {
 }
 
 function join_room() {
-  room_id = room_id || lobby_input.value;
+  room_id = lobby_input.value || room_id;
   ws.send(
     JSON.stringify({
       type: "join_room",
