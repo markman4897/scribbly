@@ -461,8 +461,8 @@ const random_names = [
 
 username = random_names[Math.floor(Math.random() * random_names.length)];
 
-var HOST = "ws:localhost:3000";
-/* let HOST = "wss://scribblio.herokuapp.com/"; */
+/* var HOST = "ws:localhost:3000"; */
+let HOST = "wss://scribblio.herokuapp.com/";
 
 let ws = new WebSocket(HOST);
 
