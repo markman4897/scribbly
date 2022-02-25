@@ -46,10 +46,6 @@ window.onload = (e) => {
 
   set_selected_tool("pen");
   set_selected_size(15);
-
-  get_user_id();
-
-  /* if (room_id !== null) join_room(); */
 };
 
 // DISABLING ACCIDENTAL UNLOAD
@@ -382,7 +378,7 @@ function drawing_history_push() {
 
   let data = canvas.toDataURL();
   drawing_history.push(data);
-  send_draw_state(data);
+  if (room_id) send_draw_state(data);
 }
 
 function undo() {
@@ -465,11 +461,9 @@ const random_names = [
 
 username = random_names[Math.floor(Math.random() * random_names.length)];
 
-let params = new URLSearchParams(document.location.search);
-room_id = params.get("room_id");
+var HOST = "ws:localhost:3000";
+/* let HOST = "wss://scribblio.herokuapp.com/"; */
 
-/* var HOST = "ws:localhost:3000"; */
-let HOST = "wss://scribblio.herokuapp.com/";
 let ws = new WebSocket(HOST);
 
 const lobby = document.getElementById("lobby");
@@ -480,7 +474,11 @@ function err(text) {
   add_text_to_chat("ERROR!", text);
 }
 
-ws.onmessage = function (message) {
+ws.onopen = (e) => {
+  get_user_id();
+};
+
+ws.onmessage = (message) => {
   let data = JSON.parse(message.data);
 
   if (data.error) err(data);
@@ -488,6 +486,8 @@ ws.onmessage = function (message) {
   switch (data.type) {
     case "new_user_created":
       user_id = data.user_id;
+
+      if (room_id) join_room();
       break;
 
     case "new_room_created":
@@ -508,6 +508,10 @@ ws.onmessage = function (message) {
 
     case "new_draw_state":
       receive_draw_state(data.state);
+      break;
+
+    case "word_guessed":
+      add_text_to_chat("victory!", "You guessed the correct word!");
       break;
 
     case "error":
@@ -545,17 +549,20 @@ function new_room() {
 }
 
 function join_room() {
-  room_id = lobby_input.value || room_id;
+  let params = new URLSearchParams(document.location.search);
+  params_room_id = params.get("room_id");
+
   ws.send(
     JSON.stringify({
       type: "join_room",
       user_id: user_id,
-      room_id: room_id,
+      room_id: lobby_input.value || params_room_id,
     })
   );
 }
 
 function send_draw_state(state) {
+  console.log("imalive");
   ws.send(
     JSON.stringify({
       type: "new_draw_state",
@@ -568,6 +575,16 @@ function send_draw_state(state) {
 
 function receive_draw_state(state) {
   redraw_canvas(state);
+}
+
+function switch_drawer(next_drawer_id) {
+  ws.send(
+    JSON.stringify({
+      type: "switch_drawer",
+      user_id: user_id,
+      next_drawer_id: next_drawer_id,
+    })
+  );
 }
 
 function push_history(room_id) {
