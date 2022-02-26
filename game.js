@@ -463,8 +463,20 @@ let ping = null;
 
 username = random_names[Math.floor(Math.random() * random_names.length)];
 
-var HOST = "ws:localhost:3000";
-/* let HOST = "wss://scribblio.herokuapp.com/"; */
+function get_host() {
+  let params = new URLSearchParams(document.location.search);
+  if (params.has("HOST")) {
+    let host_p = params.get("HOST");
+    if (host_p == "localhost") {
+      return "ws:localhost:3000";
+    } else {
+      return host_p;
+    }
+  }
+
+  return "wss://scribblio.herokuapp.com/";
+}
+const HOST = get_host();
 
 let ws = new WebSocket(HOST);
 
