@@ -484,6 +484,7 @@ const lobby = document.getElementById("lobby");
 const lobby_2 = document.getElementById("lobby-2");
 const lobby_input = document.getElementById("room_id");
 const word = document.getElementById("word");
+const room_id_display = document.getElementById("room_id_display");
 /* const username_input = document.getElementById("username"); */
 
 function err(text) {
@@ -525,6 +526,7 @@ ws.onmessage = (message) => {
 
     case "new_room_created":
       room_id = data.room_id;
+      room_id_display.innerHTML = room_id;
       push_history(room_id);
       state = states.game.drawing;
       toggle_lobby(false);
@@ -533,6 +535,7 @@ ws.onmessage = (message) => {
 
     case "room_joined":
       room_id = data.room_id;
+      room_id_display.innerHTML = room_id;
       push_history(room_id);
       state = states.game.guessing;
       toggle_lobby(false);
@@ -571,6 +574,7 @@ ws.onmessage = (message) => {
 
 ws.onclose = (e) => {
   clearInterval(ping);
+  room_id_display.innerHTML = "";
 };
 
 function toggle_lobby(state = null) {
