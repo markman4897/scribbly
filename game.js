@@ -459,6 +459,8 @@ const random_names = [
   "boss",
 ];
 
+let ping = null;
+
 username = random_names[Math.floor(Math.random() * random_names.length)];
 
 /* var HOST = "ws:localhost:3000"; */
@@ -476,6 +478,15 @@ function err(text) {
 
 ws.onopen = (e) => {
   get_user_id();
+
+  ping = setInterval(() => {
+    ws.send(
+      JSON.stringify({
+        type: "ping",
+        user_id: user_id,
+      })
+    );
+  }, 20000);
 };
 
 ws.onmessage = (message) => {
@@ -497,7 +508,7 @@ ws.onmessage = (message) => {
       break;
 
     case "room_joined":
-      room_id = room_id;
+      room_id = data.room_id;
       push_history(room_id);
       state = states.game.guessing;
       break;
@@ -522,6 +533,10 @@ ws.onmessage = (message) => {
       err("unknown type received");
       break;
   }
+};
+
+ws.onclose = (e) => {
+  clearInterval(ping);
 };
 
 function just_drawing() {
@@ -562,7 +577,6 @@ function join_room() {
 }
 
 function send_draw_state(state) {
-  console.log("imalive");
   ws.send(
     JSON.stringify({
       type: "new_draw_state",
