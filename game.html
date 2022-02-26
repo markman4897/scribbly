@@ -168,20 +168,39 @@
         </div>
       </div>
       <div id="chat" class="flex-extend">
-        <h2>Chat:</h2>
-        <div id="chat-text" class="flex-extend">
-          <span>Clive:</span> oh snap, this is awesome!<br />
-          <span>Bob:</span> just you wait till you see my next painting :)<br />
-        </div>
-        <div id="chat-inputs">
-          <input id="chat-input" class="flex-extend" type="text" />
+        <div id="lobby-2">
+          <input id="word" class="flex-extend" type="text" placeholder="word" />
           <button
             type="button"
             class="button button-bright"
-            onclick="send_input_message()"
+            onclick="select_word()"
           >
-            SEND
+            SELECT WORD
           </button>
+          <button
+            type="button"
+            class="button button-bright"
+            onclick="switch_drawer()"
+          >
+            FINISH
+          </button>
+        </div>
+        <h2>Chat:</h2>
+        <div id="chat-area" class="flex-extend">
+          <div id="chat-inputs">
+            <input id="chat-input" class="flex-extend" type="text" />
+            <button
+              type="button"
+              class="button button-bright"
+              onclick="send_input_message()"
+            >
+              SEND
+            </button>
+          </div>
+          <div id="chat-text" class="flex-extend">
+            <span>Clive:</span> oh snap, this is awesome!<br />
+            <span>Bob:</span> just you wait till you see my next painting :)<br />
+          </div>
         </div>
       </div>
     </main>

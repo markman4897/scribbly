@@ -463,13 +463,15 @@ let ping = null;
 
 username = random_names[Math.floor(Math.random() * random_names.length)];
 
-/* var HOST = "ws:localhost:3000"; */
-let HOST = "wss://scribblio.herokuapp.com/";
+var HOST = "ws:localhost:3000";
+/* let HOST = "wss://scribblio.herokuapp.com/"; */
 
 let ws = new WebSocket(HOST);
 
 const lobby = document.getElementById("lobby");
+const lobby_2 = document.getElementById("lobby-2");
 const lobby_input = document.getElementById("room_id");
+const word = document.getElementById("word");
 /* const username_input = document.getElementById("username"); */
 
 function err(text) {
@@ -487,12 +489,20 @@ ws.onopen = (e) => {
       })
     );
   }, 20000);
+
+  if (get_room_id_from_params()) {
+    console.log("ran join room func");
+    join_room();
+  }
 };
 
 ws.onmessage = (message) => {
   let data = JSON.parse(message.data);
 
-  if (data.error) err(data);
+  if (data.error) {
+    err(data);
+    console.log("data contains error:", data);
+  }
 
   switch (data.type) {
     case "new_user_created":
@@ -505,12 +515,16 @@ ws.onmessage = (message) => {
       room_id = data.room_id;
       push_history(room_id);
       state = states.game.drawing;
+      toggle_lobby(false);
+      toggle_lobby_2(true);
       break;
 
     case "room_joined":
       room_id = data.room_id;
       push_history(room_id);
       state = states.game.guessing;
+      toggle_lobby(false);
+      receive_draw_state(data.state);
       break;
 
     case "message":
@@ -525,8 +539,16 @@ ws.onmessage = (message) => {
       add_text_to_chat("victory!", "You guessed the correct word!");
       break;
 
+    case "youre_new_drawer":
+      add_text_to_chat("System", "You're the new drawer.");
+      clear();
+      toggle_lobby_2(true);
+      state = states.game.drawing;
+      break;
+
     case "error":
       err(data.message);
+      console.log("error message:", data.message);
       break;
 
     default:
@@ -539,9 +561,46 @@ ws.onclose = (e) => {
   clearInterval(ping);
 };
 
+function toggle_lobby(state = null) {
+  if (state !== null) {
+    if (state) {
+      lobby.style.display = "flex";
+    } else {
+      lobby.style.display = "none";
+    }
+  } else {
+    if (lobby.style.display == "none") {
+      lobby.style.display = "flex";
+    } else {
+      lobby.style.display = "none";
+    }
+  }
+}
+
+function toggle_lobby_2(state = null) {
+  if (state !== null) {
+    if (state) {
+      lobby_2.style.display = "block";
+    } else {
+      lobby_2.style.display = "none";
+    }
+  } else {
+    if (lobby_2.style.display == "none") {
+      lobby_2.style.display = "block";
+    } else {
+      lobby_2.style.display = "none";
+    }
+  }
+}
+
+function get_room_id_from_params() {
+  let params = new URLSearchParams(document.location.search);
+  return params.get("room_id");
+}
+
 function just_drawing() {
   state = states.drawing;
-  lobby.style.visibility = "hidden";
+  toggle_lobby(false);
 }
 
 function get_user_id() {
@@ -564,8 +623,7 @@ function new_room() {
 }
 
 function join_room() {
-  let params = new URLSearchParams(document.location.search);
-  params_room_id = params.get("room_id");
+  let params_room_id = get_room_id_from_params();
 
   ws.send(
     JSON.stringify({
@@ -591,19 +649,32 @@ function receive_draw_state(state) {
   redraw_canvas(state);
 }
 
+function select_word() {
+  ws.send(
+    JSON.stringify({
+      type: "new_word_selected",
+      user_id: user_id,
+      room_id: room_id,
+      word: word.value,
+    })
+  );
+
+  word.value = "";
+}
+
 function switch_drawer(next_drawer_id) {
   ws.send(
     JSON.stringify({
       type: "switch_drawer",
       user_id: user_id,
-      next_drawer_id: next_drawer_id,
+      /* next_drawer_id: next_drawer_id, */
     })
   );
+  toggle_lobby_2(false);
+  state = states.game.guessing;
 }
 
 function push_history(room_id) {
-  lobby.style.visibility = "hidden";
-
   const url = new URL(window.location);
   url.searchParams.set("room_id", room_id);
   window.history.pushState({}, "", url);
@@ -615,7 +686,7 @@ function add_text_to_chat(author, text) {
   author_corrected =
     author_corrected.charAt(0).toUpperCase() + author_corrected.slice(1);
   let temp = "<span>" + author_corrected + ":</span> " + text + "<br>";
-  chat_text.innerHTML += temp;
+  chat_text.innerHTML = temp + chat_text.innerHTML;
 }
 
 function send_input_message() {

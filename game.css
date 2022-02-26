@@ -112,8 +112,14 @@ main {
   text-shadow: 2px 2px 2px var(--background);
 }
 
+#chat-area {
+  display: flex;
+  flex-direction: column;
+}
+
 #chat-text {
-  border-bottom: 0.2em dashed var(--secondary);
+  display: flex;
+  flex-direction: column;
   overflow: auto;
 }
 
@@ -133,6 +139,7 @@ main {
 }
 
 #chat-inputs {
+  border-bottom: 0.2em dashed var(--secondary);
   height: 1.8rem;
   display: flex;
   flex-direction: row;
@@ -290,4 +297,9 @@ main {
 
 #lobby > * {
   margin: 0.2em;
+}
+
+#lobby-2 {
+  border-bottom: 0.2em dashed var(--secondary);
+  display: none;
 }
