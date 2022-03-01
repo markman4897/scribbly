@@ -115,6 +115,7 @@ main {
 #chat-area {
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 #chat-text {
@@ -138,16 +139,22 @@ main {
   outline: 0;
 }
 
+.chat-inputs > button {
+  margin: 0.2rem;
+  padding: 0 0.2rem;
+}
+
 #chat-inputs {
-  border-bottom: 0.2em dashed var(--secondary);
+  border: 0.2em dashed var(--secondary);
+  border-radius: 0.4em;
   height: 1.8rem;
+  padding: 0.2em;
   display: flex;
   flex-direction: row;
 }
 
-.chat-inputs > button {
-  margin: 0.2rem;
-  padding: 0 0.2rem;
+#chat-inputs > button {
+  padding: 0 0.4em;
 }
 
 #controlls .button {
